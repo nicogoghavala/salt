@@ -59,9 +59,6 @@ function Img({ colors, photo, label, style={}, position="center center" }: ImgPr
       <div style={{position:"absolute",inset:0,background:"linear-gradient(to bottom,transparent 60%,rgba(0,0,0,0.15) 100%)"}}/>
     </div>
   );
-      <div style={{position:"absolute",inset:0,background:"linear-gradient(to bottom,transparent 50%,rgba(0,0,0,0.2) 100%)"}}/>
-    </div>
-  );
   const [a,b]=colors;
   return (
     <div style={{background:`linear-gradient(135deg,${a},${b})`,display:"flex",alignItems:"center",justifyContent:"center",position:"relative",overflow:"hidden",...style}}>
