@@ -35,6 +35,20 @@ const PHOTOS: Record<string, string> = {
   petit_jean:     `${CDN}/v1781364575/IMG_0107_nsbnhh.jpg`,
   babines:        `${CDN}/v1781364585/IMG_0108_smo7db.jpg`,
   panjim:         `${CDN}/v1781366321/image_c528mr.jpg`,
+  la_releve:      `${CDN}/v1781364594/IMG_0109_gknhv8.jpg`,
+  // Stay photos
+  casa_youm:      `${CDN}/v1781430956/image_lgznwz.jpg`,
+  jogging_samena: `${CDN}/v1781430968/IMG_0113_zj5v7g.jpg`,
+  bords_de_mer:   `${CDN}/v1781430981/IMG_0114_wpsgu2.jpg`,
+  edelweiss:      `${CDN}/v1781430996/IMG_0116_vrbu3q.jpg`,
+  releve_stay:    `${CDN}/v1781431007/image_i3krkr.jpg`,
+  bastide:        `${CDN}/v1781431041/image_oj7ux2.jpg`,
+  tuba_club:      `${CDN}/v1781431058/IMG_0119_sgvmyy.jpg`,
+  ile_degaby:     `${CDN}/v1781431067/IMG_0120_yni7kn.jpg`,
+  zannier:        `${CDN}/v1781431076/image_vqhyj7.jpg`,
+  roches_blanches:`${CDN}/v1781431091/image_xsl88e.jpg`,
+  rose_the:       `${CDN}/v1781431115/IMG_0123_fwcmpj.jpg`,
+  magdeleine:     `${CDN}/v1781431125/IMG_0124_crwztm.jpg`,
 };
 
 const T = {
@@ -205,32 +219,28 @@ const DRINK: Place[] = [
 
 // ─── STAY ─────────────────────────────────────────────────────────────────────
 const STAY: Place[] = [
-  { name:"Casa Youm", type:"Maison d'Hôtes", tag:"L'Estaque", colors:G.stay,
+  { name:"Casa Youm", type:"Maison d'Hôtes", tag:"L'Estaque", photo:PHOTOS.casa_youm, colors:G.stay,
     desc:"A former manager and a French-Italian photographer running an intimate estate in L'Estaque — two double rooms and a suite, each with a sea-facing terrace on the house where Cézanne once lived. Extraordinary. The most personal stay in the area.", link:"https://casayoum.com" },
-  { name:"Jogging Saména", type:"House · Restaurant", tag:"Calanque de Saména", colors:G.stay,
+  { name:"Jogging Saména", type:"House · Restaurant", tag:"Calanque de Saména", photo:PHOTOS.jogging_samena, colors:G.stay,
     desc:"Olivier Amsellem found an abandoned house in the Calanque de Saména and let time show in the walls. Two patios, an outdoor pool, a clawfoot bath, the sea 50 metres away. Breakfast from L'Épicerie L'Idéal. Jogging Trattoria in the restaurant. Two nights minimum. From €250.", link:"https://joggingjogging.com" },
-  { name:"Les Bords de Mer", type:"Hotel", tag:"Corniche Kennedy", colors:G.stay,
-    desc:"Art Deco, 19 rooms all facing directly to sea. The former Hôtel Richelieu completely reimagined. Every room opens to the Mediterranean. From €200.", link:"https://www.lesbordsdemer.com" },
-  { name:"C2 Hotel", type:"Hotel ★★★★★", tag:"Centre", colors:G.stay,
-    desc:"A 19th century private mansion between Vieux Port and Notre-Dame de la Garde. 20 rooms, each individually designed. The bar alone is worth a visit. From €280.", link:"https://www.c2-hotel.com" },
-  { name:"Pension Edelweiss", type:"Guesthouse", tag:"Centre", colors:G.stay,
-    desc:"Five guest rooms in a duplex apartment furnished with vintage pieces from the 30s, 50s, 60s and 70s — each with a private bathroom. Eccentric, personal, completely un-hotel-like. The kind of stay you'll tell people about for years." },
-  { name:"La Relève", type:"Bar · Restaurant · Rooms", tag:"Endoume", colors:G.stay,
+  { name:"Les Bords de Mer", type:"Hotel", tag:"Corniche Kennedy", photo:PHOTOS.bords_de_mer, colors:G.stay,
+    desc:"Art Deco, 19 rooms all facing directly to sea. The former Hôtel Richelieu completely reimagined. Every room opens to the Mediterranean. From €200.", link:"https://www.booking.com/hotel/fr/les-bords-de-mer.html" },
+  { name:"Pension Edelweiss", type:"Guesthouse", tag:"Centre", photo:PHOTOS.edelweiss, colors:G.stay,
+    desc:"Five guest rooms in a duplex apartment furnished with vintage pieces from the 30s, 50s, 60s and 70s — each with a private bathroom. Eccentric, personal, completely un-hotel-like. The kind of stay you'll tell people about for years.", link:"https://www.booking.com/searchresults.html?ss=Pension+Edelweiss+Marseille" },
+  { name:"La Relève", type:"Bar · Restaurant · Rooms", tag:"Endoume", photo:PHOTOS.releve_stay, colors:G.stay,
     desc:"Four 50s-inspired rooms above the best bar in the neighbourhood, designed by Honoré. Wake up to Chef Arnaud's cooking downstairs, Hugo's wine in the evening. The most atmospheric stay in the 7th. See also: Food and Drink sections." },
-  { name:"La Bastide des Culs-Rousset", type:"Maison d'Hôtes", tag:"Marseille Hills", colors:G.local,
+  { name:"La Bastide des Culs-Rousset", type:"Maison d'Hôtes", tag:"Marseille Hills", photo:PHOTOS.bastide, colors:G.local,
     desc:"Isabelle's 18th century bastide on the hills above Marseille. 8,000m² garden, infinity pool, table d'hôtes. A genuine secret.", link:"https://bastideculsrousset.fr" },
-  { name:"Tuba Club", type:"Hotel · Beach Club", tag:"Les Goudes", colors:G.local,
-    desc:"Cabanons with rooms at the edge of the Calanques. The most atmospheric stay outside the city. Book the table and the room at the same time." },
-  { name:"Île Degaby", type:"Island · Restaurant", tag:"Rade de Marseille", colors:G.stay,
-    desc:"A fort built for Louis XIV, gifted to a famous artist, abandoned for decades, reopened as a restaurant in 2024. Take the boat from Malmousque — 15 minutes. Chef Sébastien Dugast cooks short, precise Mediterranean plates. The sun sets directly in front of you. Open May to mid-October only.", link:"https://iledegaby.com" },
-  { name:"Zannier Île de Bendor", type:"Island Hotel", tag:"Bandor — 50 min east", colors:G.stay,
-    desc:"Paul Ricard bought this seven-hectare island off Bandol in the 1950s. Zannier Hotels has given it back its soul — 1960s Riviera glamour, a serious wellness centre, Provençal houses where time genuinely stops. Eight places to eat and drink. Seven-minute ferry from Bandol. Open May to November only.", link:"https://zannierhotels.com" },
-  { name:"Les Roches Blanches", type:"Hotel ★★★★★", tag:"Cassis", colors:G.stay,
-    desc:"The legendary Cassis hotel restored to its 1930s Art Deco glory. Winston Churchill and Edith Piaf both stayed. Forty-five minutes from Marseille.", link:"https://www.roches-blanches-cassis.com" },
-  { name:"Le Rose Thé", type:"Hotel · Restaurant", tag:"La Ciotat", colors:G.stay,
-    desc:"La Ciotat's most beloved address since 1933. Faces the sea completely. Book a room with a jacuzzi terrace.", link:"https://lerosethe.com" },
-  { name:"La Magdeleine", type:"Hotel · Michelin ★", tag:"Gémenos", colors:G.stay,
-    desc:"Michelin-starred chef Mathias Dandine's 18th century bastide. Twenty minutes from Marseille, a world away. From €312.", link:"https://relais-magdeleine.com" },
+  { name:"Tuba Club", type:"Hotel · Beach Club", tag:"Les Goudes", photo:PHOTOS.tuba_club, colors:G.local,
+    desc:"Cabanons with rooms at the edge of the Calanques. The most atmospheric stay outside the city. Book the table and the room at the same time.", link:"https://tuba-club.com" },
+  { name:"Zannier Île de Bendor", type:"Island Hotel", tag:"Bandol — 50 min east", photo:PHOTOS.zannier, colors:G.stay,
+    desc:"Paul Ricard bought this seven-hectare island off Bandol in the 1950s. Zannier Hotels has given it back its soul — 1960s Riviera glamour, a serious wellness centre, Provençal houses where time genuinely stops. Eight places to eat and drink. Seven-minute ferry from Bandol. Open May to November only.", link:"https://www.booking.com/hotel/fr/zannier-ile-de-bendor.html" },
+  { name:"Les Roches Blanches", type:"Hotel ★★★★★", tag:"Cassis", photo:PHOTOS.roches_blanches, colors:G.stay,
+    desc:"The legendary Cassis hotel restored to its 1930s Art Deco glory. Winston Churchill and Edith Piaf both stayed. Forty-five minutes from Marseille.", link:"https://www.booking.com/hotel/fr/les-roches-blanches.html" },
+  { name:"Le Rose Thé", type:"Hotel · Restaurant", tag:"La Ciotat", photo:PHOTOS.rose_the, colors:G.stay,
+    desc:"La Ciotat's most beloved address since 1933. Faces the sea completely. Book a room with a jacuzzi terrace.", link:"https://www.booking.com/hotel/fr/le-rose-the.html" },
+  { name:"La Magdeleine", type:"Hotel · Michelin ★", tag:"Gémenos", photo:PHOTOS.magdeleine, colors:G.stay,
+    desc:"Michelin-starred chef Mathias Dandine's 18th century bastide. Twenty minutes from Marseille, a world away. From €312.", link:"https://www.booking.com/hotel/fr/la-magdeleine.html" },
 ];
 
 // ─── LOCAL ────────────────────────────────────────────────────────────────────
@@ -241,7 +251,7 @@ const LOCAL: Place[] = [
     desc:"The most beautiful stretch of Marseille's coastline — rocky, wild, no beach chairs. Locals swim here before work. Walk it at dawn before the city wakes." },
   { name:"La Bonne Mère", type:"Basilica", tag:"Notre-Dame de la Garde", colors:G.local,
     desc:"The Bonne Mère watches over everything. Climb to her at dawn or dusk — the city below, the sea in every direction, the islands, the Calanques. Marseille makes more sense from up here. Go once on your first morning." },
-  { name:"Île Degaby", type:"Island · Restaurant", tag:"Rade de Marseille", colors:G.local,
+  { name:"Île Degaby", type:"Island · Restaurant", tag:"Rade de Marseille", photo:PHOTOS.ile_degaby, colors:G.local,
     desc:"Take the boat from Malmousque — 15 minutes — and arrive at something that shouldn't exist. A Louis XIV fort reopened as a restaurant and bar. The most extraordinary evening in Marseille. Book the boat when you book the table. May–October only." },
   { name:"Les Goudes", type:"Village", tag:"Les Goudes", colors:G.local,
     desc:"Drive to the end of the road. This ancient fishing village sits at the edge of the Calanques. Swim, watch the fishermen, have the best lunch of your trip. Go early — the drive back at sunset is the payoff." },
@@ -527,7 +537,7 @@ function PlaceDrawer({ place, onClose }: { place: Place; onClose: () => void }) 
             </a>
             {place.link && (
               <a className="drawer-btn secondary" href={place.link} target="_blank" rel="noopener noreferrer">
-                Book
+                {place.type.toLowerCase().includes("hotel") || place.type.toLowerCase().includes("guesthouse") || place.type.toLowerCase().includes("maison") || place.type.toLowerCase().includes("house") || place.type.toLowerCase().includes("rooms") ? "Check Availability →" : "Book →"}
               </a>
             )}
           </div>
