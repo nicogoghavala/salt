@@ -1016,28 +1016,48 @@ function Home({ onCity, onPage }: { onCity: (id: string) => void; onPage: (id: s
           ))}
         </div>
 
-        {/* Monetisation strip */}
-        <div style={{margin:"0 20px 20px",display:"grid",gridTemplateColumns:"1fr 1fr",gap:12}}>
-          <div onClick={()=>onPage("itineraries")} style={{border:`1px solid ${T.border}`,padding:"16px 14px",cursor:"pointer",background:T.paper}}>
-            <div style={{fontSize:8,letterSpacing:"0.2em",textTransform:"uppercase",color:T.accent,marginBottom:6}}>Marseille</div>
-            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:18,fontWeight:400,color:T.charcoal,marginBottom:4}}>Day plans</div>
-            <div style={{fontSize:11,color:T.muted,fontWeight:300}}>Four ways to spend a day →</div>
+        {/* Editorial monetisation strip */}
+        <div style={{margin:"0 0 20px"}}>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:0}}>
+            <div onClick={()=>onPage("itineraries")} style={{position:"relative",height:"52vw",maxHeight:220,cursor:"pointer",overflow:"hidden"}}>
+              <Img colors={G.local} photo={PHOTOS.vallon} style={{position:"absolute",inset:0}}/>
+              <div style={{position:"absolute",inset:0,background:"linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.65) 100%)"}}/>
+              <div style={{position:"absolute",bottom:0,left:0,right:0,padding:"16px 14px"}}>
+                <div style={{fontSize:7,letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(255,255,255,0.6)",marginBottom:4}}>Marseille</div>
+                <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:20,fontWeight:300,color:"white",lineHeight:1.1,marginBottom:4}}>Day plans</div>
+                <div style={{fontSize:10,color:"rgba(255,255,255,0.7)",fontWeight:300}}>Four ways to spend a day →</div>
+              </div>
+            </div>
+            <div onClick={()=>onPage("concierge")} style={{position:"relative",height:"52vw",maxHeight:220,cursor:"pointer",overflow:"hidden"}}>
+              <Img colors={G.mrs} photo={PHOTOS.home_hero} style={{position:"absolute",inset:0}}/>
+              <div style={{position:"absolute",inset:0,background:"linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.65) 100%)"}}/>
+              <div style={{position:"absolute",top:0,left:0,right:0,height:2,background:T.accent}}/>
+              <div style={{position:"absolute",bottom:0,left:0,right:0,padding:"16px 14px"}}>
+                <div style={{fontSize:7,letterSpacing:"0.22em",textTransform:"uppercase",color:T.accent,marginBottom:4}}>Personal</div>
+                <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:20,fontWeight:300,color:"white",lineHeight:1.1,marginBottom:4}}>Concierge</div>
+                <div style={{fontSize:10,color:"rgba(255,255,255,0.7)",fontWeight:300}}>We know the tables →</div>
+              </div>
+            </div>
           </div>
-          <div onClick={()=>onPage("concierge")} style={{border:`1px solid ${T.accent}`,padding:"16px 14px",cursor:"pointer",background:T.paper,position:"relative",overflow:"hidden"}}>
-            <div style={{position:"absolute",top:0,left:0,right:0,height:2,background:T.accent}}/>
-            <div style={{fontSize:8,letterSpacing:"0.2em",textTransform:"uppercase",color:T.accent,marginBottom:6}}>Personal</div>
-            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:18,fontWeight:400,color:T.charcoal,marginBottom:4}}>Concierge</div>
-            <div style={{fontSize:11,color:T.muted,fontWeight:300}}>We know the tables →</div>
-          </div>
-          <div onClick={()=>onPage("guides")} style={{border:`1px solid ${T.border}`,padding:"16px 14px",cursor:"pointer",background:T.paper}}>
-            <div style={{fontSize:8,letterSpacing:"0.2em",textTransform:"uppercase",color:T.accent,marginBottom:6}}>Download</div>
-            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:18,fontWeight:400,color:T.charcoal,marginBottom:4}}>City guides</div>
-            <div style={{fontSize:11,color:T.muted,fontWeight:300}}>PDF · €15 →</div>
-          </div>
-          <div onClick={()=>onPage("membership")} style={{border:`1px solid ${T.border}`,padding:"16px 14px",cursor:"pointer",background:T.paper}}>
-            <div style={{fontSize:8,letterSpacing:"0.2em",textTransform:"uppercase",color:T.accent,marginBottom:6}}>Join</div>
-            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:18,fontWeight:400,color:T.charcoal,marginBottom:4}}>Membership</div>
-            <div style={{fontSize:11,color:T.muted,fontWeight:300}}>€7/month →</div>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:0}}>
+            <div onClick={()=>onPage("guides")} style={{position:"relative",height:"44vw",maxHeight:180,cursor:"pointer",overflow:"hidden"}}>
+              <Img colors={G.stay} photo={PHOTOS.bords_de_mer} style={{position:"absolute",inset:0}}/>
+              <div style={{position:"absolute",inset:0,background:"linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.65) 100%)"}}/>
+              <div style={{position:"absolute",bottom:0,left:0,right:0,padding:"14px 14px"}}>
+                <div style={{fontSize:7,letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(255,255,255,0.6)",marginBottom:4}}>Download</div>
+                <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:20,fontWeight:300,color:"white",lineHeight:1.1,marginBottom:4}}>City guides</div>
+                <div style={{fontSize:10,color:"rgba(255,255,255,0.7)",fontWeight:300}}>PDF · €15 →</div>
+              </div>
+            </div>
+            <div onClick={()=>onPage("membership")} style={{position:"relative",height:"44vw",maxHeight:180,cursor:"pointer",overflow:"hidden"}}>
+              <Img colors={G.food} photo={PHOTOS.livingston} style={{position:"absolute",inset:0}}/>
+              <div style={{position:"absolute",inset:0,background:"linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.65) 100%)"}}/>
+              <div style={{position:"absolute",bottom:0,left:0,right:0,padding:"14px 14px"}}>
+                <div style={{fontSize:7,letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(255,255,255,0.6)",marginBottom:4}}>Join</div>
+                <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:20,fontWeight:300,color:"white",lineHeight:1.1,marginBottom:4}}>Membership</div>
+                <div style={{fontSize:10,color:"rgba(255,255,255,0.7)",fontWeight:300}}>€7/month →</div>
+              </div>
+            </div>
           </div>
         </div>
 
