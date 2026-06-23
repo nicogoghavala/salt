@@ -769,43 +769,6 @@ function Menu({ onClose, onCity }: { onClose: () => void; onCity: (id: string) =
   );
 }
 
-function Home({ onCity }: { onCity: (id: string) => void }) {
-  return (
-    <>
-      <div className="home-hero">
-        <Img colors={G.mrs} photo={PHOTOS.home_hero} style={{ position:"absolute", inset:0 }} />
-        <div className="hho" />
-        <div className="hht">
-          <div className="hhe">This week on Salt</div>
-          <div className="hh1">A table on the rocks, the sea below.</div>
-          <div className="hh2">The South of France the way locals actually live it. No pretence, no tourist traps.</div>
-          <button className="cta" onClick={() => onCity("marseille")}>Open Marseille →</button>
-        </div>
-      </div>
-      <div className="feed">
-        <div className="fl">Latest</div>
-        <div className="stories-grid">
-          {FEATURED.map((f, i) => (
-            <div className="sc" key={i} onClick={() => onCity(f.city)}>
-              <Img colors={f.colors} photo={f.photo} style={{ width:"100%", height:"50vw", maxHeight:210 }} />
-              <div className="sb">
-                <div className="st">{f.tag}</div>
-                <div className="s1">{f.title}</div>
-                <div className="s2">{f.sub}</div>
-                <div className="sr">Read more →</div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="eb" style={{ margin:"8px 20px 28px" }}>
-          <EmailCapture />
-        </div>
-        <div className="ft"><div className="fb">Salt</div><div className="fs">© 2026 · A food & drink guide</div></div>
-      </div>
-    </>
-  );
-}
-
 // ─── MARSEILLE ITINERARY DATA ─────────────────────────────────────────────────
 const MARSEILLE_ITINS = [
   {
