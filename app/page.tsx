@@ -114,6 +114,9 @@ const COUNTRIES: Country[] = [
     { id:"lyon", name:"Lyon", tagline:"Chef-led, unhurried, deeply French.", colors:G.lyon },
     { id:"luberon", name:"Luberon", tagline:"Villages, vineyards, silence.", colors:G.local, available:false },
   ]},
+  { id:"canada", name:"Canada", available:true, cities:[
+    { id:"toronto", name:"Toronto", tagline:"The most exciting food city you haven't written about yet.", colors:["#1a1a2e","#4a4a6a"], available:false },
+  ]},
   { id:"italy", name:"Italy", available:false },
   { id:"spain", name:"Spain", available:false },
   { id:"india", name:"India", available:true, cities:[
@@ -467,6 +470,46 @@ body{background:${T.cream};font-family:'DM Sans',sans-serif;color:${T.charcoal};
   .salt-wrap{max-width:430px;margin:0 auto;}
 }
 
+/* ── MONETISATION ── */
+.mono-page{padding:32px 24px 60px;animation:fu 0.3s ease both;}
+.mono-back{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:${T.muted};background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;padding:0;margin-bottom:28px;display:flex;align-items:center;gap:6px;transition:color 0.2s;}
+.mono-back:hover{color:${T.charcoal};}
+.mono-eyebrow{font-size:9px;letter-spacing:0.26em;text-transform:uppercase;color:${T.accent};margin-bottom:10px;}
+.mono-title{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:${T.charcoal};line-height:0.95;letter-spacing:-0.02em;margin-bottom:12px;}
+.mono-sub{font-size:14px;color:${T.muted};font-weight:300;line-height:1.75;margin-bottom:32px;max-width:380px;}
+.mono-rule{height:1px;background:${T.border};margin:32px 0;}
+.mono-input{width:100%;padding:14px 16px;border:1px solid ${T.border};background:${T.cream};font-family:'DM Sans',sans-serif;font-size:13px;color:${T.charcoal};outline:none;margin-bottom:12px;transition:border-color 0.2s;}
+.mono-input:focus{border-color:${T.accent};}
+.mono-input::placeholder{color:${T.muted};}
+.mono-textarea{width:100%;padding:14px 16px;border:1px solid ${T.border};background:${T.cream};font-family:'DM Sans',sans-serif;font-size:13px;color:${T.charcoal};outline:none;margin-bottom:12px;resize:vertical;min-height:100px;transition:border-color 0.2s;}
+.mono-textarea:focus{border-color:${T.accent};}
+.mono-textarea::placeholder{color:${T.muted};}
+.mono-btn{width:100%;padding:16px;background:${T.charcoal};border:none;color:${T.cream};font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;margin-top:4px;}
+.mono-btn:hover{opacity:0.8;}
+.mono-btn.outline{background:transparent;border:1px solid ${T.border};color:${T.muted};margin-top:10px;}
+.mono-success{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;font-style:italic;color:${T.accent};text-align:center;padding:20px 0;line-height:1.5;}
+.tier-card{border:1px solid ${T.border};padding:24px;margin-bottom:16px;position:relative;overflow:hidden;}
+.tier-card.featured{border-color:${T.accent};}
+.tier-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:${T.accent};}
+.tier-badge{font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:${T.accent};margin-bottom:8px;}
+.tier-price{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:${T.charcoal};margin-bottom:4px;}
+.tier-period{font-size:11px;color:${T.muted};margin-bottom:16px;}
+.tier-feature{font-size:13px;color:${T.caption};font-weight:300;line-height:1.8;padding-left:16px;position:relative;}
+.tier-feature::before{content:'—';position:absolute;left:0;color:${T.accent};}
+.itin-day{border-bottom:1px solid ${T.border};padding:24px 0;cursor:pointer;transition:opacity 0.15s;}
+.itin-day:last-child{border-bottom:none;}
+.itin-day:hover{opacity:0.75;}
+.itin-day-time{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:${T.accent};margin-bottom:4px;}
+.itin-day-name{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:${T.charcoal};line-height:1.05;margin-bottom:6px;}
+.itin-day-desc{font-size:13px;color:${T.caption};font-weight:300;line-height:1.7;}
+.nav-links-row{display:none;}
+@media(min-width:768px){
+  .nav-links-row{display:flex;gap:24px;align-items:center;}
+  .nav-link-btn{background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:${T.muted};transition:color 0.2s;padding:0;}
+  .nav-link-btn:hover{color:${T.charcoal};}
+  .nav-link-btn.accent{color:${T.accent};}
+}
+
 /* ── PLACE DRAWER ── */
 .drawer-overlay{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);animation:fi 0.2s ease;}
 .drawer{position:fixed;bottom:0;left:0;right:0;z-index:401;background:${T.cream};max-height:92vh;overflow-y:auto;border-radius:16px 16px 0 0;animation:slideUp 0.3s cubic-bezier(0.32,0.72,0,1);}
@@ -712,7 +755,7 @@ function Menu({ onClose, onCity }: { onClose: () => void; onCity: (id: string) =
         <div style={{ marginTop:40, paddingTop:24, borderTop:"1px solid rgba(255,255,255,0.08)" }}>
           <div className="ol">Coming next</div>
           <div style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:17, fontWeight:300, color:"rgba(255,255,255,0.35)", lineHeight:2.2, marginBottom:8 }}>
-            Panjim in the monsoon
+            Panjim in the monsoon · Toronto
           </div>
           <div style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:13, fontWeight:300, fontStyle:"italic", color:"rgba(255,255,255,0.18)", lineHeight:1.7, marginBottom:20 }}>
             Come in July. The city exhales. The tourists are gone, the rain is constant, and Panjim becomes itself again.
@@ -763,23 +806,345 @@ function Home({ onCity }: { onCity: (id: string) => void }) {
   );
 }
 
+// ─── MARSEILLE ITINERARY DATA ─────────────────────────────────────────────────
+const MARSEILLE_ITINS = [
+  {
+    id:"good-life", name:"The Good Life", tag:"Luxury",
+    desc:"The best day this city has to offer. From the rocky coastline at dawn to the finest table in the evening.",
+    stops:[
+      { time:"9:00 AM", name:"Malmousque at dawn", desc:"Walk the rocky coastline before the city wakes. The most beautiful stretch of Marseille, locals swimming before work." },
+      { time:"10:30 AM", name:"La Meulerie", desc:"The neighbourhood's finest breakfast. Beautiful terrace, exceptional coffee, pastries you'll think about for weeks." },
+      { time:"12:30 PM", name:"Livingston", desc:"Marseille's most talked-about table. Chef Mads Christensen's kitchen changes with what arrives that morning. Book ahead." },
+      { time:"4:00 PM", name:"Tuba Club", desc:"The most glamorous spot on the coast. Natural wine, the light on the water at 4pm. Arrive by sea if you can." },
+      { time:"8:00 PM", name:"Le Petit Nice", desc:"Gérald Passedat's three-star table on the Corniche. A meal that takes hours and is worth every minute." },
+    ]
+  },
+  {
+    id:"taste", name:"Taste", tag:"Food & Drink",
+    desc:"Eat until the city makes sense. From the morning market to the last natural wine of the evening.",
+    stops:[
+      { time:"9:00 AM", name:"Deep Coffee Roasters", desc:"Roasting on site since 2018. Two minutes from the Vieux Port. You smell it before you find it." },
+      { time:"10:30 AM", name:"Marché du Cours Julien", desc:"The neighbourhood market. Organic producers, natural wine by the glass, cheese, charcuterie. Arrive hungry." },
+      { time:"1:00 PM", name:"La Mercerie", desc:"Harry Cummins, Laura Vidal, Julia Mitton. The lunch menu is the most generous in the city. Sit at the counter." },
+      { time:"4:00 PM", name:"Ripaille", desc:"Le Panier's essential natural wine bar. Blue facade, honest pours, the monthly Sunday brunch." },
+      { time:"8:30 PM", name:"Prosper", desc:"François Roche (ex-Septime) and Santiago Michel near La Plaine. Bold, fiery, unfussy. Monday to Friday evenings only." },
+    ]
+  },
+  {
+    id:"what-remains", name:"What Remains", tag:"Local",
+    desc:"The Marseille that isn't in any guidebook. Hidden ports, ancient institutions, the city at its most itself.",
+    stops:[
+      { time:"8:30 AM", name:"Les Goudes at dawn", desc:"Drive to the end of the road. Ancient fishing village at the edge of the Calanques. Swim, watch the fishermen." },
+      { time:"11:00 AM", name:"Père Blaize", desc:"Six generations of herbalists on Rue Méolan since the early 1800s. Buy the Château d'If tisane from Maison Blaize opposite." },
+      { time:"1:00 PM", name:"Chez Jeannot", desc:"Terrace right on the water in Vallon des Auffes. Wood-fired pizza, grilled fish. The most atmospheric lunch in the city." },
+      { time:"4:00 PM", name:"Vallon des Auffes", desc:"The tiny fishing port hidden beneath the Corniche. Blink and you'd miss it. Sit on the rocks, do nothing." },
+      { time:"8:30 PM", name:"Bistrot Chave", desc:"A Marseille institution since forever. Zinc bar, Ricard, simple food beautifully done. The regulars have been coming forty years." },
+    ]
+  },
+  {
+    id:"the-eye", name:"The Eye", tag:"Culture & Design",
+    desc:"Marseille through its makers and its walls. The most creative city in the south of France.",
+    stops:[
+      { time:"9:30 AM", name:"Atelier Renata", desc:"One of Marseille's most beautiful creative spaces. Ceramics, independent design, the work of hands." },
+      { time:"11:00 AM", name:"Cours Julien murals", desc:"The most densely painted neighbourhood in the south of France. Every wall tells a story. Walk slowly." },
+      { time:"1:00 PM", name:"Sessùn Alma", desc:"Former soap factory transformed into a 170m² concept space. Canteen, fashion, ceramics, books behind a listed mahogany door." },
+      { time:"3:30 PM", name:"Maison Empereur", desc:"France's oldest hardware store, since 1827. Four floors of kitchen tools, Marseille soap, Provençal linens." },
+      { time:"8:00 PM", name:"Double Zéro", desc:"Hi-fi listening bar, natural wine, vinyl all night — disco, funk, soul. The kind of place you stay four hours." },
+    ]
+  }
+];
+
+// ─── CONCIERGE ───────────────────────────────────────────────────────────────
+function ConciergePage({ onBack }: { onBack: () => void }) {
+  const [form, setForm] = useState({ name:"", email:"", city:"", dates:"", notes:"" });
+  const [sent, setSent] = useState(false);
+  const submit = () => {
+    if (form.name && form.email && form.city) {
+      const subject = encodeURIComponent(`Salt Concierge — ${form.city}`);
+      const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\nDestination: ${form.city}\nDates: ${form.dates}\n\n${form.notes}`);
+      window.location.href = `mailto:hello@saltguide.co?subject=${subject}&body=${body}`;
+      setSent(true);
+    }
+  };
+  return (
+    <div className="mono-page">
+      <button className="mono-back" onClick={onBack}>← Back</button>
+      <div className="mono-eyebrow">Salt Concierge</div>
+      <div className="mono-title">We know people.<br/>We know tables.</div>
+      <div className="mono-sub">Planning a trip? We know when to arrive and where to sit. Get in touch and we'll put together something worth the journey.</div>
+      {sent ? (
+        <div className="mono-success">Thank you. We'll be in touch within 24 hours.</div>
+      ) : (
+        <>
+          <input className="mono-input" placeholder="Your name" value={form.name} onChange={e=>setForm({...form,name:e.target.value})}/>
+          <input className="mono-input" placeholder="Your email" type="email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/>
+          <input className="mono-input" placeholder="Where are you going?" value={form.city} onChange={e=>setForm({...form,city:e.target.value})}/>
+          <input className="mono-input" placeholder="When? (dates or rough timing)" value={form.dates} onChange={e=>setForm({...form,dates:e.target.value})}/>
+          <textarea className="mono-textarea" placeholder="Tell us about the trip — who you're travelling with, what matters to you, anything specific you're looking for." value={form.notes} onChange={e=>setForm({...form,notes:e.target.value})}/>
+          <button className="mono-btn" onClick={submit}>Send →</button>
+        </>
+      )}
+      <div className="mono-rule"/>
+      <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:20,fontWeight:300,color:T.muted,lineHeight:1.6}}>
+        "The right table at the right time in the right city. That's all travel is."
+      </div>
+    </div>
+  );
+}
+
+// ─── CITY GUIDE ──────────────────────────────────────────────────────────────
+function CityGuidePage({ onBack }: { onBack: () => void }) {
+  const [email, setEmail] = useState("");
+  const [city, setCity] = useState("marseille");
+  const [sent, setSent] = useState(false);
+  const submit = () => {
+    if (email.includes("@")) {
+      const subject = encodeURIComponent(`Salt City Guide — ${city}`);
+      const body = encodeURIComponent(`Please send the ${city} guide to: ${email}`);
+      window.location.href = `mailto:hello@saltguide.co?subject=${subject}&body=${body}`;
+      setSent(true);
+    }
+  };
+  return (
+    <div className="mono-page">
+      <button className="mono-back" onClick={onBack}>← Back</button>
+      <div className="mono-eyebrow">Salt City Guides</div>
+      <div className="mono-title">The guide.<br/>Yours to keep.</div>
+      <div className="mono-sub">Everything in the app — plus neighbourhood maps, a curated three-day itinerary, and the insider notes that don't make it online. Beautifully designed, print-ready PDF.</div>
+      {sent ? (
+        <div className="mono-success">On its way. Check your inbox within 24 hours.</div>
+      ) : (
+        <>
+          <div style={{marginBottom:12}}>
+            {["marseille","lyon"].map(c=>(
+              <button key={c} onClick={()=>setCity(c)}
+                style={{marginRight:8,marginBottom:8,padding:"8px 16px",border:`1px solid ${city===c?T.charcoal:T.border}`,background:city===c?T.charcoal:"transparent",color:city===c?T.cream:T.muted,fontFamily:"'DM Sans',sans-serif",fontSize:10,letterSpacing:"0.12em",textTransform:"uppercase",cursor:"pointer"}}>
+                {c.charAt(0).toUpperCase()+c.slice(1)} {c==="lyon"?"— coming soon":"— €15"}
+              </button>
+            ))}
+          </div>
+          <input className="mono-input" placeholder="Your email" type="email" value={email} onChange={e=>setEmail(e.target.value)}/>
+          <button className="mono-btn" onClick={submit}>Get the {city.charAt(0).toUpperCase()+city.slice(1)} guide →</button>
+          <div style={{fontSize:11,color:T.muted,marginTop:10,fontWeight:300}}>We'll send it to your inbox within 24 hours.</div>
+        </>
+      )}
+    </div>
+  );
+}
+
+// ─── MEMBERSHIP ──────────────────────────────────────────────────────────────
+function MembershipPage({ onBack }: { onBack: () => void }) {
+  const [email, setEmail] = useState("");
+  const [sent, setSent] = useState(false);
+  const submit = () => {
+    if (email.includes("@")) {
+      const subject = encodeURIComponent("Salt Membership — Waitlist");
+      const body = encodeURIComponent(`Add to membership waitlist: ${email}`);
+      window.location.href = `mailto:hello@saltguide.co?subject=${subject}&body=${body}`;
+      setSent(true);
+    }
+  };
+  return (
+    <div className="mono-page">
+      <button className="mono-back" onClick={onBack}>← Back</button>
+      <div className="mono-eyebrow">Salt Membership</div>
+      <div className="mono-title">Know before<br/>everyone else.</div>
+      <div className="mono-sub">New cities before they go public. Downloadable guides. Concierge access. The list behind the list.</div>
+      <div className="tier-card" style={{marginBottom:16}}>
+        <div className="tier-badge">Free</div>
+        <div className="tier-price">Salt</div>
+        <div className="tier-period">Always free</div>
+        <div className="tier-feature">Full access to all city guides</div>
+        <div className="tier-feature">New places as we find them</div>
+        <div className="tier-feature">Email updates when new cities drop</div>
+      </div>
+      <div className="tier-card featured" style={{marginBottom:32}}>
+        <div className="tier-badge">Member — Coming soon</div>
+        <div className="tier-price">€7<span style={{fontSize:18}}>/mo</span></div>
+        <div className="tier-period">Founding member rate</div>
+        <div className="tier-feature">Everything in Salt Free</div>
+        <div className="tier-feature">Downloadable city guides (PDF)</div>
+        <div className="tier-feature">Early access — new cities before public launch</div>
+        <div className="tier-feature">Priority concierge response</div>
+        <div className="tier-feature">The list behind the list — places not published online</div>
+      </div>
+      {sent ? (
+        <div className="mono-success">You're on the founding member list. We'll be in touch.</div>
+      ) : (
+        <>
+          <input className="mono-input" placeholder="Your email" type="email" value={email} onChange={e=>setEmail(e.target.value)}/>
+          <button className="mono-btn" onClick={submit}>Join the founding member waitlist →</button>
+          <div style={{fontSize:11,color:T.muted,marginTop:10,fontWeight:300}}>No payment now. We'll contact you when membership launches.</div>
+        </>
+      )}
+    </div>
+  );
+}
+
+// ─── ITINERARY PAGE ───────────────────────────────────────────────────────────
+function ItineraryPage({ onBack, onCity }: { onBack: () => void; onCity: (id:string) => void }) {
+  const [selected, setSelected] = useState<string|null>(null);
+  const itin = MARSEILLE_ITINS.find(i=>i.id===selected);
+  if (selected && itin) return (
+    <div className="mono-page">
+      <button className="mono-back" onClick={()=>setSelected(null)}>← All days</button>
+      <div className="mono-eyebrow">{itin.tag} · Marseille</div>
+      <div className="mono-title">{itin.name}</div>
+      <div className="mono-sub">{itin.desc}</div>
+      <div className="mono-rule"/>
+      {itin.stops.map((stop,i)=>(
+        <div className="itin-day" key={i} onClick={()=>onCity("marseille")}>
+          <div className="itin-day-time">{stop.time}</div>
+          <div className="itin-day-name">{stop.name}</div>
+          <div className="itin-day-desc">{stop.desc}</div>
+        </div>
+      ))}
+      <div className="mono-rule"/>
+      <button className="mono-btn" onClick={()=>{
+        const subject = encodeURIComponent(`Salt Concierge — Marseille ${itin.name} day`);
+        const body = encodeURIComponent(`I'd like a personalised version of the ${itin.name} day in Marseille.`);
+        window.location.href = `mailto:hello@saltguide.co?subject=${subject}&body=${body}`;
+      }}>Make this personal — ask the concierge →</button>
+    </div>
+  );
+  return (
+    <div className="mono-page">
+      <button className="mono-back" onClick={onBack}>← Back</button>
+      <div className="mono-eyebrow">Day Plans · Marseille</div>
+      <div className="mono-title">How to spend<br/>a day.</div>
+      <div className="mono-sub">Four ways to be in Marseille. Choose one and follow it. Or ask the concierge to build you something personal.</div>
+      {MARSEILLE_ITINS.map(itin=>(
+        <div className="itin-day" key={itin.id} onClick={()=>setSelected(itin.id)}>
+          <div className="itin-day-time">{itin.tag}</div>
+          <div className="itin-day-name">{itin.name}</div>
+          <div className="itin-day-desc">{itin.desc}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Home({ onCity, onPage }: { onCity: (id: string) => void; onPage: (id: string) => void }) {
+  return (
+    <>
+      <div className="home-hero">
+        <Img colors={G.mrs} photo={PHOTOS.home_hero} style={{ position:"absolute", inset:0 }} />
+        <div className="hho" />
+        <div className="hht">
+          <div className="hhe">This week on Salt</div>
+          <div className="hh1">A table on the rocks, the sea below.</div>
+          <div className="hh2">The South of France the way locals actually live it. No pretence, no tourist traps.</div>
+          <button className="cta" onClick={() => onCity("marseille")}>Open Marseille →</button>
+        </div>
+      </div>
+      <div className="feed">
+        <div className="fl">Latest</div>
+        <div className="stories-grid">
+          {FEATURED.map((f, i) => (
+            <div className="sc" key={i} onClick={() => onCity(f.city)}>
+              <Img colors={f.colors} photo={f.photo} style={{ width:"100%", height:"50vw", maxHeight:210 }} />
+              <div className="sb">
+                <div className="st">{f.tag}</div>
+                <div className="s1">{f.title}</div>
+                <div className="s2">{f.sub}</div>
+                <div className="sr">Read more →</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Monetisation strip */}
+        <div style={{margin:"0 20px 20px",display:"grid",gridTemplateColumns:"1fr 1fr",gap:12}}>
+          <div onClick={()=>onPage("itineraries")} style={{border:`1px solid ${T.border}`,padding:"16px 14px",cursor:"pointer",background:T.paper}}>
+            <div style={{fontSize:8,letterSpacing:"0.2em",textTransform:"uppercase",color:T.accent,marginBottom:6}}>Marseille</div>
+            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:18,fontWeight:400,color:T.charcoal,marginBottom:4}}>Day plans</div>
+            <div style={{fontSize:11,color:T.muted,fontWeight:300}}>Four ways to spend a day →</div>
+          </div>
+          <div onClick={()=>onPage("concierge")} style={{border:`1px solid ${T.accent}`,padding:"16px 14px",cursor:"pointer",background:T.paper,position:"relative",overflow:"hidden"}}>
+            <div style={{position:"absolute",top:0,left:0,right:0,height:2,background:T.accent}}/>
+            <div style={{fontSize:8,letterSpacing:"0.2em",textTransform:"uppercase",color:T.accent,marginBottom:6}}>Personal</div>
+            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:18,fontWeight:400,color:T.charcoal,marginBottom:4}}>Concierge</div>
+            <div style={{fontSize:11,color:T.muted,fontWeight:300}}>We know the tables →</div>
+          </div>
+          <div onClick={()=>onPage("guides")} style={{border:`1px solid ${T.border}`,padding:"16px 14px",cursor:"pointer",background:T.paper}}>
+            <div style={{fontSize:8,letterSpacing:"0.2em",textTransform:"uppercase",color:T.accent,marginBottom:6}}>Download</div>
+            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:18,fontWeight:400,color:T.charcoal,marginBottom:4}}>City guides</div>
+            <div style={{fontSize:11,color:T.muted,fontWeight:300}}>PDF · €15 →</div>
+          </div>
+          <div onClick={()=>onPage("membership")} style={{border:`1px solid ${T.border}`,padding:"16px 14px",cursor:"pointer",background:T.paper}}>
+            <div style={{fontSize:8,letterSpacing:"0.2em",textTransform:"uppercase",color:T.accent,marginBottom:6}}>Join</div>
+            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:18,fontWeight:400,color:T.charcoal,marginBottom:4}}>Membership</div>
+            <div style={{fontSize:11,color:T.muted,fontWeight:300}}>€7/month →</div>
+          </div>
+        </div>
+
+        <div className="eb" style={{ margin:"8px 20px 28px" }}>
+          <EmailCapture />
+        </div>
+        <div className="ft"><div className="fb">Salt</div><div className="fs">© 2026 · A food & drink guide</div></div>
+      </div>
+    </>
+  );
+}
+
 export default function App() {
   const [menu, setMenu] = useState(false);
   const [city, setCity] = useState<string | null>(null);
+  const [page, setPage] = useState<string | null>(null);
+  const goBack = () => { setPage(null); setCity(null); };
+
+  if (page === "concierge") return (
+    <><style>{css}</style>
+    <div className="salt-wrap" style={{minHeight:"100vh",background:T.cream}}>
+      <div className="nav"><div className="brand" onClick={goBack}><div className="brand-name">Salt</div></div><button className="menu-btn" onClick={()=>setMenu(true)}><div className="ml"/><div className="ml"/><div className="ml"/></button></div>
+      {menu&&<Menu onClose={()=>setMenu(false)} onCity={(c)=>{setCity(c);setMenu(false);setPage(null);}}/>}
+      <ConciergePage onBack={goBack}/>
+    </div></>
+  );
+  if (page === "guides") return (
+    <><style>{css}</style>
+    <div className="salt-wrap" style={{minHeight:"100vh",background:T.cream}}>
+      <div className="nav"><div className="brand" onClick={goBack}><div className="brand-name">Salt</div></div><button className="menu-btn" onClick={()=>setMenu(true)}><div className="ml"/><div className="ml"/><div className="ml"/></button></div>
+      {menu&&<Menu onClose={()=>setMenu(false)} onCity={(c)=>{setCity(c);setMenu(false);setPage(null);}}/>}
+      <CityGuidePage onBack={goBack}/>
+    </div></>
+  );
+  if (page === "membership") return (
+    <><style>{css}</style>
+    <div className="salt-wrap" style={{minHeight:"100vh",background:T.cream}}>
+      <div className="nav"><div className="brand" onClick={goBack}><div className="brand-name">Salt</div></div><button className="menu-btn" onClick={()=>setMenu(true)}><div className="ml"/><div className="ml"/><div className="ml"/></button></div>
+      {menu&&<Menu onClose={()=>setMenu(false)} onCity={(c)=>{setCity(c);setMenu(false);setPage(null);}}/>}
+      <MembershipPage onBack={goBack}/>
+    </div></>
+  );
+  if (page === "itineraries") return (
+    <><style>{css}</style>
+    <div className="salt-wrap" style={{minHeight:"100vh",background:T.cream}}>
+      <div className="nav"><div className="brand" onClick={goBack}><div className="brand-name">Salt</div></div><button className="menu-btn" onClick={()=>setMenu(true)}><div className="ml"/><div className="ml"/><div className="ml"/></button></div>
+      {menu&&<Menu onClose={()=>setMenu(false)} onCity={(c)=>{setCity(c);setMenu(false);setPage(null);}}/>}
+      <ItineraryPage onBack={goBack} onCity={(c)=>{setCity(c);setPage(null);}}/>
+    </div></>
+  );
+
   return (
     <>
       <style>{css}</style>
       <div className="salt-wrap" style={{ minHeight:"100vh", background:T.cream }}>
         {menu && <Menu onClose={() => setMenu(false)} onCity={(c) => { setCity(c); setMenu(false); }} />}
         <div className="nav">
-          <div className="brand" onClick={() => setCity(null)}>
+          <div className="brand" onClick={() => { setCity(null); setPage(null); }}>
             <div className="brand-name">Salt</div>
+          </div>
+          <div className="nav-links-row">
+            <button className="nav-link-btn" onClick={()=>setPage("itineraries")}>Days</button>
+            <button className="nav-link-btn" onClick={()=>setPage("guides")}>Guides</button>
+            <button className="nav-link-btn accent" onClick={()=>setPage("concierge")}>Concierge</button>
           </div>
           <button className="menu-btn" onClick={() => setMenu(true)}>
             <div className="ml" /><div className="ml" /><div className="ml" />
           </button>
         </div>
-        {city ? <CityView city={city} onBack={() => setCity(null)} /> : <Home onCity={setCity} />}
+        {city ? <CityView city={city} onBack={() => setCity(null)} /> : <Home onCity={setCity} onPage={setPage} />}
       </div>
     </>
   );
