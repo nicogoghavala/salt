@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>SALT Road Book No. 001 — The Monsoon Escape (Village Route)</name>
+    <Style id="icon-1899-DB4436-normal">
+      <IconStyle>
+        <color>ff3644db</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1899-DB4436-highlight">
+      <IconStyle>
+        <color>ff3644db</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1899-DB4436">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-DB4436-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-DB4436-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-FF0066-4000-nodesc-normal">
+      <LineStyle>
+        <color>ff6600ff</color>
+        <width>4</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-FF0066-4000-nodesc-highlight">
+      <LineStyle>
+        <color>ff6600ff</color>
+        <width>6</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-FF0066-4000-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-FF0066-4000-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-FF0066-4000-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Placemark>
+      <name>Salt Road Book No. 001 — Village Route</name>
+      <styleUrl>#line-FF0066-4000-nodesc</styleUrl>
+      <LineString>
+        <tessellate>1</tessellate>
+        <coordinates>
+          72.8347,18.9067,0
+          73.0297,18.99,0
+          73.0833,18.85,0
+          73.1989,18.65,0
+          73.12,18.44,0
+          73.1396,18.2915,0
+          73.3045,18.3185,0
+          73.25,18.4333,0
+          73.3167,18.4167,0
+          73.45,18.25,0
+          73.4833,17.9833,0
+          73.58,17.98,0
+          73.8,17.95,0
+          73.9833,17.9333,0
+        </coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>START — South Bombay · 5:30am</name>
+      <description><![CDATA[SALT Road Book No. 001 — Day 1<br>         The Monsoon Escape · Village Route<br><br>         Leave at 5:30am. The city is still dark. Marine Drive will be empty. Cross to the Eastern Freeway toward Panvel — this is the cleanest exit from South Bombay for the inland route.<br><br>         Before you leave:<br>         — Fill the tank the night before<br>         — Download offline maps for Raigad district<br>         — Pack a flask of coffee — first chai stop is Pen, 90 minutes away<br>         — Rain jacket within reach, not in the boot<br>         — Power bank fully charged<br><br>         The road: Eastern Freeway → Panvel → Old Mumbai-Goa Highway toward Pen. Avoid the expressway. You want the old road.]]></description>
+      <styleUrl>#icon-1899-DB4436</styleUrl>
+      <Point>
+        <coordinates>
+          72.8347,18.9067,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Panvel · The city ends here</name>
+      <description><![CDATA[~45 minutes from South Bombay<br><br>         Panvel is where Mumbai finally ends and Maharashtra begins. You'll know it when the air changes — the industrial smell of Navi Mumbai gives way to something greener and quieter.<br><br>         Don't stop here. Keep moving. From Panvel take the old NH66 toward Pen — not the expressway. The old road goes through villages. That's the point.<br><br>         The light at this hour: If you left at 5:30am you'll be through Panvel as the sun comes up. The paddy fields on either side of the road will be catching the first light. Start noticing things.]]></description>
+      <styleUrl>#icon-1899-DB4436</styleUrl>
+      <Point>
+        <coordinates>
+          73.11,18.99,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Stop 1 — Pen · First chai · 7:00am</name>
+      <description><![CDATA[~85 km from South Bombay · 90 minutes<br><br>         Pen is famous for two things — Ganesh idol makers and the best morning chai on this route. The town wakes early. By 6:30am the stalls are open.<br><br>         What to do: Park near the main market area. Walk five minutes. Find a chai stall with a coal stove — there are several. Order chai and whatever is coming off the griddle. Poha, batata vada, or just biscuits. Eat standing up.<br><br>         The Ganesh workshops: Pen supplies Ganesh idols to all of Maharashtra for Ganesh Chaturthi. The workshops are visible from the road — clay, paint, enormous idols in various stages of completion. In monsoon season they are in full production. Stop and look if one is open.<br><br>         How long: 20-30 minutes. Don't rush the chai.<br><br>         Then: From Pen head toward Nagothane and Roha. The road narrows and the villages begin properly.]]></description>
+      <styleUrl>#icon-1899-DB4436</styleUrl>
+      <Point>
+        <coordinates>
+          73.095,18.7333,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Nagothane · The road changes</name>
+      <description><![CDATA[~115 km · 2.5 hours<br><br>         Nagothane is a small town where the road begins to show you the Sahyadris for the first time — the hills in the distance, dark green in the monsoon, clouds sitting on the ridges.<br><br>         Don't stop — keep moving toward Roha. The stretch from Nagothane to Roha is one of the most beautiful on this route. Paddy fields on both sides, the ghats building ahead, almost no traffic at this hour.<br><br>         Photograph from the car: The road through the paddy fields with the hills behind. Don't pull over — just shoot through the window. This is the establishing shot of Road Book No. 001.]]></description>
+      <styleUrl>#icon-1899-DB4436</styleUrl>
+      <Point>
+        <coordinates>
+          73.1667,18.55,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Stop 2 — Roha · River and fuel · 8:30am</name>
+      <description><![CDATA[~130 km · 3 hours<br><br>         Roha sits on the Kundalika river and is the last proper town before the road gets truly interesting. The river here is wide and in the monsoon runs fast and brown with Sahyadri soil.<br><br>         Fuel up here. This is the recommended fuel stop — stations get less reliable toward Kolad and Mangaon.<br><br>         The river: After fuelling, drive to the river bridge and park. Walk onto the bridge and look upstream. In heavy monsoon the Kundalika is extraordinary — the force of it, the colour, the sound. Five minutes. Then move.<br><br>         Tyres: Check tyre pressure here if you haven't recently. The road ahead to Kolad has rough patches.]]></description>
+      <styleUrl>#icon-1899-DB4436</styleUrl>
+      <Point>
+        <coordinates>
+          73.12,18.44,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>⭐ Interior Turn — Tala Village · The road nobody takes</name>
+      <description><![CDATA[SALT Interior Route · Between Roha and Kolad<br><br>         Just past Roha, watch for the turn toward Tala. This takes you off the main road entirely and into the true interior of Raigad — a direction most vehicles never go.<br><br>         The road: Narrow, sometimes unpaved, runs through rice paddies and coconut groves with the Western Ghats growing larger ahead. No highway sounds. No trucks. No signage in English.<br><br>         Tala village: A proper Konkan settlement — terracotta-roofed houses behind compound walls, mango trees heavy with fruit in season, the smell of wood smoke and wet earth. A weekly market happens here on certain days. If it's running, stop.<br><br>         Eat here if you're hungry. Whatever the local dhaba has — rice, dal, sabzi, possibly fish. ₹80-100. Sit with whoever is there.<br><br>         Navigation: Download the Tala area offline before you leave Bombay. Connectivity drops here. Ask locals for directions toward Nizampur — they will point you right.<br><br>         Road condition: Rough in sections. A decent car handles it. Allow extra time. This detour adds 45-60 minutes but is worth every minute.]]></description>
+      <styleUrl>#icon-1899-DB4436</styleUrl>
+      <Point>
+        <coordinates>
+          73.1396,18.2915,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>⭐ Secret Stop — Nizampur · Deep forest interior</name>
+      <description><![CDATA[SALT Secret Stop · Raigad Interior<br><br>         Nizampur is a village in the interior of Raigad that almost no through-traffic ever reaches. The road narrows to a single lane. Dense Sahyadri forest on both sides. Birdsong you don't hear on highways.<br><br>         Why stop: Because this is the version of Maharashtra that most people drive past on the expressway without knowing exists. Rice paddies terraced into hillsides. Women carrying vessels on their heads. Cattle on the road. A temple with fresh marigolds. The ordinary extraordinary.<br><br>         Photography: The single-lane road disappearing into the forest ahead. A shot that looks like nothing else from this drive — proof you went somewhere different.<br><br>         Navigation from here: Follow the road toward Mangaon. It eventually widens and reconnects with the main route. If you're uncertain, ask. Point toward Mangaon. Someone will show you the way.<br><br>         Salt note: These interior roads can be affected by heavy rain. If there has been significant rainfall the night before, proceed with caution through this section. The main road via Nagothane is always available as an alternative.]]></description>
+      <styleUrl>#icon-1899-DB4436</styleUrl>
+      <Point>
+        <coordinates>
+          73.3045,18.3185,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>⭐ Secret Stop — Village weekly market (if Wednesday)</name>
+      <description><![CDATA[SALT Secret Stop · Between Roha and Kolad<br><br>         On the road between Roha and Kolad, villages hold weekly markets — haats — on rotating days. Wednesday is market day in several villages along this stretch.<br><br>         If you see a cluster of people, colour, and vehicles on the roadside — stop. These markets sell produce, livestock, hardware, cloth, and food from the surrounding farms and villages. They have been happening every week for generations.<br><br>         Buy: Whatever looks extraordinary. Seasonal mangoes, kokum, local honey, sugarcane juice pressed on the spot.<br><br>         How long: 20 minutes maximum. You're not shopping — you're witnessing.<br><br>         Salt cannot guarantee a market will be running on your specific Wednesday. That uncertainty is part of what makes the inland route different from the highway.]]></description>
+      <styleUrl>#icon-1899-DB4436</styleUrl>
+      <Point>
+        <coordinates>
+          73.28,18.4,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Stop 3 — Kolad · The Kundalika · 9:30am</name>
+      <description><![CDATA[~155 km · 3.5 hours<br><br>         The Kundalika river runs fast here — fast enough for white water rafting in the monsoon, which is exactly what operators offer. The river is the colour of milky tea from all the red Sahyadri soil washing into it.<br><br>         The river bank: Pull off and walk down to the water. Sit for 20 minutes. The sound of fast water, the smell of wet forest, the ghats rising on both sides. This is the first moment on the drive where you stop thinking about anything else.<br><br>         Chai: There are stalls near the river bank. Order masala chai. Drink it at the water's edge.<br><br>         Rafting: If the river is running well and you have 2-3 hours, operators run the 14km Kundalika rafting stretch for roughly ₹700-800. No booking needed — just show up and ask. But today you have Panchgani to reach, so judge the time.<br><br>         How long: 30-45 minutes.]]></description>
+      <styleUrl>#icon-1899-DB4436</styleUrl>
+      <Point>
+        <coordinates>
+          73.37,18.25,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>⭐ Secret Stop — Unnamed waterfall, Kolad-Mangaon road</name>
+      <description><![CDATA[SALT Secret Stop · Between Kolad and Mangaon<br><br>         The road from Kolad toward Mangaon runs alongside the base of the ghats. In peak monsoon, waterfalls appear on every hillside — most of them unnamed, most of them running directly across or beside the road.<br><br>         Stop at the first one that makes you want to stop. That's the rule. Don't plan it. You'll know.<br><br>         What to do: Get out of the car. Stand under it if it's safe. Let the water hit you. This is the moment Road Book No. 001 is actually about.<br><br>         Photography: The road disappearing into mist with a waterfall crossing it. This image does not exist on Instagram yet.]]></description>
+      <styleUrl>#icon-1899-DB4436</styleUrl>
+      <Point>
+        <coordinates>
+          73.42,18.15,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Stop 4 — Mangaon · Lunch · 11:30am</name>
+      <description><![CDATA[~175 km · 4.5 hours<br><br>         Mangaon is a small market town in the heart of Raigad district. It sits at the junction of several village roads and has the energy of a place that serves the surrounding farmland rather than passing tourists.<br><br>         Lunch here. Not a restaurant recommendation — ask someone where the local workers eat. That place, wherever it is, will serve you the correct food: rice, dal, sabzi, chapati, possibly fish if it's fresh. ₹80-120 per person.<br><br>         The market street: Walk through it after lunch. Raigad agriculture — rice, coconut, betel nut, kokum — is visible in the shops and stalls. Buy kokum if you see good quality. It travels.<br><br>         How long: 45-60 minutes. You're now 30 minutes from Poladpur and the start of Ambenali Ghat.]]></description>
+      <styleUrl>#icon-1899-DB4436</styleUrl>
+      <Point>
+        <coordinates>
+          73.3167,18.2333,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Stop 5 — Poladpur · The turn · 12:30pm</name>
+      <description><![CDATA[~195 km · 5 hours<br><br>         Poladpur is where you leave the valley and start climbing. Turn left here for Ambenali Ghat — the 40km mountain road that takes you from the Konkan coast up to the Sahyadri plateau where Panchgani sits.<br><br>         Before you turn:<br>         — Check ghat status with local police or petrol station. Ambenali is sometimes closed during heavy rain and landslide alerts.<br>         — Fill fuel here. There are no petrol stations on the ghat.<br>         — Use the facilities. Same reason.<br><br>         If the ghat is closed: Alternate route via Wai adds 45-60 minutes but is still beautiful. Ask at the petrol station for the current alternate.<br><br>         The drive from here changes completely. You've been in the flat Konkan plain all morning. Now the road goes up.]]></description>
+      <styleUrl>#icon-1899-DB4436</styleUrl>
+      <Point>
+        <coordinates>
+          73.58,17.98,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>★ HERO — Ambenali Ghat · The drive itself · 1:00-2:30pm</name>
+      <description><![CDATA[40 km · 1.5 hours · The reason you came<br><br>         Forty kilometres of hairpin bends through the Javli forest. The Western Ghats on both sides. Seasonal waterfalls at every turn. Mist so thick in heavy rain you can only see ten metres ahead. The road narrows. The drops are serious. Trucks take corners wide.<br><br>         Drive slowly. Not because of safety — though that too. Because this road deserves your full attention.<br><br>         Stop at every viewpoint. The valley views when the mist clears reveal the Konkan plain 1,000 metres below — the same flat land you drove through this morning. The scale is extraordinary.<br><br>         The waterfall crossings: At several points water runs directly across the road from cascades above. In peak monsoon these can be knee-deep. Drive through slowly. This is not a problem. It is the point.<br><br>         The chai stall: Roughly halfway up, on the left, a family runs a tarpaulin stall. Ginger chai, roasted corn. No name. Stop here.<br><br>         Photography:<br>         — The road disappearing into mist ahead<br>         — Waterfalls crossing the tarmac<br>         — The valley view when the clouds part<br>         — Your hands on the steering wheel with the forest ahead<br><br>         This is the cover of Road Book No. 001.]]></description>
+      <styleUrl>#icon-1899-DB4436</styleUrl>
+      <Point>
+        <coordinates>
+          73.75,17.94,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>⭐ Secret Stop — Chai stall, midway up Ambenali</name>
+      <description><![CDATA[SALT Secret Stop · Approx. 20km into the ghat<br><br>         Under a blue tarpaulin on the left side of the road, a family has been running a chai and bhutta stall through every monsoon for years. No sign, no name, no Instagram presence.<br><br>         The chai is made with ginger on a coal stove. The bhutta (corn) is roasted on coal and served with lemon and red chilli. You pay ₹40-60 for both.<br><br>         You drink it standing up, watching the mist move through the trees, listening to the waterfall somewhere below.<br><br>         This is the best ₹50 you will spend on this entire drive.<br><br>         Salt cannot guarantee this stall is there on your specific day. That uncertainty is part of what makes it worth stopping for.]]></description>
+      <styleUrl>#icon-1899-DB4436</styleUrl>
+      <Point>
+        <coordinates>
+          73.8,17.92,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>END — Panchgani · Arrival · 3:00-4:00pm</name>
+      <description><![CDATA[~245 km · 8-9 hours with stops<br><br>         Road Book No. 001 — Day 1 Complete.<br><br>         You've driven through the Konkan coast, through Raigad's villages and rice fields, up through the Sahyadri forest. Panchgani sits at 1,334 metres. The air is 8-10 degrees cooler than Mumbai. Everything is wet. Everything is green.<br><br>         Table Land: If you arrive with energy, drive up to Table Land before check-in. Asia's second largest volcanic plateau. In the monsoon the grass is an almost violent green. The edges drop into the valley. Clouds move at eye level. Fifteen minutes and you'll understand why the British built schools here.<br><br>         Tonight: Walk the main road after dinner. The hill stations of the Sahyadri have a particular quality at night in the monsoon — quiet, cool, the sound of rain on tin roofs, wood smoke from somewhere. Sit with it.<br><br>         Tomorrow morning: Set an alarm for 5:30am. Sunrise from Sydney Point if the clouds break. Then breakfast. Then Pune.]]></description>
+      <styleUrl>#icon-1899-DB4436</styleUrl>
+      <Point>
+        <coordinates>
+          73.9833,17.9333,0
+        </coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>
