@@ -769,7 +769,149 @@ function Menu({ onClose, onCity }: { onClose: () => void; onCity: (id: string) =
   );
 }
 
-// ─── MARSEILLE ITINERARY DATA ─────────────────────────────────────────────────
+// ─── ROAD BOOKS DATA ──────────────────────────────────────────────────────────
+const ROAD_BOOKS = [
+  {
+    id: "rb001",
+    number: "No. 001",
+    title: "The Monsoon Escape",
+    subtitle: "Bombay to Panchgani · Village Route",
+    tag: "India · Maharashtra",
+    distance: "245 km",
+    duration: "8–9 hours",
+    season: "July–September",
+    desc: "This is not the fast route. It is the right route. The expressway takes three hours and shows you nothing. This road takes all day and shows you everything — the Konkan coast, Raigad's villages, the rice fields, the Sahyadri forest, and the longest ghat in Maharashtra.",
+    stops: ["South Bombay", "Pen", "Roha", "Tala Village ★", "Nizampur ★", "Kolad", "Mangaon", "Poladpur", "Ambenali Ghat ★★", "Panchgani"],
+    colors: ["#1a3020","#4a7040"] as [string,string],
+    available: true,
+  },
+  {
+    id: "rb002",
+    number: "No. 002",
+    title: "The Ghat Road",
+    subtitle: "Bombay to Goa · Coastal Route",
+    tag: "India · Konkan",
+    distance: "~600 km",
+    duration: "2 days",
+    season: "October–March",
+    desc: "Coming soon.",
+    stops: [],
+    colors: ["#1a2030","#3a5070"] as [string,string],
+    available: false,
+  },
+  {
+    id: "rb003",
+    number: "No. 003",
+    title: "The Plantation Drive",
+    subtitle: "Coorg · Coffee and Cardamom",
+    tag: "India · Karnataka",
+    distance: "~280 km",
+    duration: "1 day",
+    season: "Year round",
+    desc: "Coming soon.",
+    stops: [],
+    colors: ["#1a1a10","#504020"] as [string,string],
+    available: false,
+  },
+];
+
+// ─── ROAD TRIPS PAGE ─────────────────────────────────────────────────────────
+function RoadTripsPage({ onBack }: { onBack: () => void }) {
+  const [selected, setSelected] = useState<string | null>(null);
+  const book = ROAD_BOOKS.find(b => b.id === selected);
+
+  if (selected && book && book.available) return (
+    <div className="mono-page">
+      <button className="mono-back" onClick={() => setSelected(null)}>← All Road Books</button>
+      <div className="mono-eyebrow">Salt Road Book · {book.number}</div>
+      <div className="mono-title">{book.title}</div>
+      <div className="mono-sub">{book.subtitle}</div>
+
+      <div style={{display:"flex",gap:16,flexWrap:"wrap" as const,marginBottom:20}}>
+        {[book.distance, book.duration, book.season].map((s,i) => (
+          <div key={i} style={{fontSize:11,color:T.muted,fontWeight:300,letterSpacing:"0.08em"}}>
+            <span style={{color:T.charcoal,fontWeight:500}}>{s}</span>
+          </div>
+        ))}
+      </div>
+
+      <div style={{height:1,background:T.border,marginBottom:20}}/>
+
+      <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:16,fontWeight:300,fontStyle:"italic",color:T.muted,lineHeight:1.7,marginBottom:24}}>
+        {book.desc}
+      </div>
+
+      <div style={{marginBottom:28}}>
+        <div style={{fontSize:9,letterSpacing:"0.18em",textTransform:"uppercase" as const,color:T.accent,marginBottom:12}}>The Route</div>
+        {book.stops.map((stop, i) => (
+          <div key={i} style={{display:"flex",alignItems:"baseline",gap:12,borderBottom:`1px solid ${T.border}`,padding:"10px 0"}}>
+            <div style={{fontSize:9,letterSpacing:"0.14em",textTransform:"uppercase" as const,color:stop.includes("★★") ? T.accent : stop.includes("★") ? T.accent : T.muted,minWidth:20,opacity:stop.includes("★") ? 1 : 0.6}}>{i + 1}</div>
+            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:20,fontWeight:400,color:T.charcoal}}>{stop}</div>
+            {stop.includes("★★") && <div style={{fontSize:8,letterSpacing:"0.12em",textTransform:"uppercase" as const,color:T.accent,marginLeft:"auto"}}>Hero</div>}
+            {stop.includes("★") && !stop.includes("★★") && <div style={{fontSize:8,letterSpacing:"0.12em",textTransform:"uppercase" as const,color:T.accent,marginLeft:"auto"}}>Secret</div>}
+          </div>
+        ))}
+      </div>
+
+      <div style={{height:1,background:T.border,marginBottom:20}}/>
+
+      <div style={{fontSize:9,letterSpacing:"0.18em",textTransform:"uppercase" as const,color:T.accent,marginBottom:16}}>Download</div>
+      <a className="drawer-btn primary" href="/SALT_Road_Book_No_001_with_map.pdf" target="_blank" rel="noopener noreferrer" style={{display:"block",textAlign:"center" as const,textDecoration:"none",padding:"14px",background:T.charcoal,color:T.cream,fontSize:10,letterSpacing:"0.14em",textTransform:"uppercase" as const,marginBottom:10}}>
+        Download Road Book PDF →
+      </a>
+      <a className="drawer-btn secondary" href="/SALT_Road_Book_No_001_Enhanced.kml" target="_blank" rel="noopener noreferrer" style={{display:"block",textAlign:"center" as const,textDecoration:"none",padding:"14px",background:"transparent",color:T.charcoal,border:`1px solid ${T.border}`,fontSize:10,letterSpacing:"0.14em",textTransform:"uppercase" as const,marginBottom:24}}>
+        Download KML for Google My Maps →
+      </a>
+
+      <div style={{fontSize:11,color:T.muted,fontWeight:300,lineHeight:1.7}}>
+        Import the KML into Google My Maps — all stops plot instantly with notes. Download Raigad district offline before departure. Connectivity drops in the interior.
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="mono-page">
+      <button className="mono-back" onClick={onBack}>← Back</button>
+      <div className="mono-eyebrow">Salt Road Books</div>
+      <div className="mono-title">Roads worth<br/>taking.</div>
+      <div className="mono-sub">Curated drives written from experience. Not the fast route. The right route. Each one a full day plan — stops, secret detours, where to eat, when to leave.</div>
+
+      {ROAD_BOOKS.map(book => (
+        <div key={book.id}
+          onClick={() => book.available && setSelected(book.id)}
+          style={{
+            borderBottom:`1px solid ${T.border}`,
+            padding:"24px 0",
+            cursor:book.available ? "pointer" : "default",
+            opacity:book.available ? 1 : 0.5,
+            transition:"opacity 0.15s"
+          }}>
+          <div style={{position:"relative" as const,width:"100%",height:"44vw",maxHeight:200,overflow:"hidden",marginBottom:14}}>
+            <Img colors={book.colors} label={book.title} style={{position:"absolute" as const,inset:0}}/>
+            <div style={{position:"absolute" as const,inset:0,background:"linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.6) 100%)"}}/>
+            <div style={{position:"absolute" as const,bottom:0,left:0,right:0,padding:"14px 16px"}}>
+              <div style={{fontSize:8,letterSpacing:"0.2em",textTransform:"uppercase" as const,color:"rgba(255,255,255,0.6)",marginBottom:4}}>{book.tag}</div>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:300,color:"white",lineHeight:1.1}}>{book.title}</div>
+            </div>
+            {!book.available && (
+              <div style={{position:"absolute" as const,top:10,right:10,background:"rgba(0,0,0,0.5)",padding:"4px 10px",fontSize:8,letterSpacing:"0.14em",textTransform:"uppercase" as const,color:"rgba(255,255,255,0.6)"}}>
+                Coming soon
+              </div>
+            )}
+          </div>
+          <div style={{fontSize:9,letterSpacing:"0.14em",textTransform:"uppercase" as const,color:T.accent,marginBottom:4}}>{book.number}</div>
+          <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:400,color:T.charcoal,marginBottom:4}}>{book.subtitle}</div>
+          <div style={{display:"flex",gap:16,marginBottom:8}}>
+            <div style={{fontSize:11,color:T.muted}}>{book.distance}</div>
+            <div style={{fontSize:11,color:T.muted}}>{book.duration}</div>
+            <div style={{fontSize:11,color:T.muted}}>{book.season}</div>
+          </div>
+          {book.available && <div style={{fontSize:9,letterSpacing:"0.12em",textTransform:"uppercase" as const,color:T.charcoal,borderBottom:`1px solid ${T.border}`,paddingBottom:1,display:"inline-block"}}>Read + Download →</div>}
+        </div>
+      ))}
+    </div>
+  );
+}
 const MARSEILLE_ITINS = [
   {
     id:"good-life", name:"The Good Life", tag:"Luxury",
@@ -1023,7 +1165,7 @@ function Home({ onCity, onPage }: { onCity: (id: string) => void; onPage: (id: s
               <Img colors={G.local} photo={PHOTOS.vallon} style={{position:"absolute",inset:0}}/>
               <div style={{position:"absolute",inset:0,background:"linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.65) 100%)"}}/>
               <div style={{position:"absolute",bottom:0,left:0,right:0,padding:"16px 14px"}}>
-                <div style={{fontSize:7,letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(255,255,255,0.6)",marginBottom:4}}>Marseille</div>
+                <div style={{fontSize:7,letterSpacing:"0.22em",textTransform:"uppercase" as const,color:"rgba(255,255,255,0.6)",marginBottom:4}}>Marseille</div>
                 <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:20,fontWeight:300,color:"white",lineHeight:1.1,marginBottom:4}}>Day plans</div>
                 <div style={{fontSize:10,color:"rgba(255,255,255,0.7)",fontWeight:300}}>Four ways to spend a day →</div>
               </div>
@@ -1033,30 +1175,39 @@ function Home({ onCity, onPage }: { onCity: (id: string) => void; onPage: (id: s
               <div style={{position:"absolute",inset:0,background:"linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.65) 100%)"}}/>
               <div style={{position:"absolute",top:0,left:0,right:0,height:2,background:T.accent}}/>
               <div style={{position:"absolute",bottom:0,left:0,right:0,padding:"16px 14px"}}>
-                <div style={{fontSize:7,letterSpacing:"0.22em",textTransform:"uppercase",color:T.accent,marginBottom:4}}>Personal</div>
+                <div style={{fontSize:7,letterSpacing:"0.22em",textTransform:"uppercase" as const,color:T.accent,marginBottom:4}}>Personal</div>
                 <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:20,fontWeight:300,color:"white",lineHeight:1.1,marginBottom:4}}>Concierge</div>
                 <div style={{fontSize:10,color:"rgba(255,255,255,0.7)",fontWeight:300}}>We know the tables →</div>
               </div>
             </div>
           </div>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:0}}>
+            <div onClick={()=>onPage("roadtrips")} style={{position:"relative",height:"44vw",maxHeight:180,cursor:"pointer",overflow:"hidden"}}>
+              <Img colors={["#1a3020","#4a7040"]} style={{position:"absolute",inset:0}}/>
+              <div style={{position:"absolute",inset:0,background:"linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.65) 100%)"}}/>
+              <div style={{position:"absolute",bottom:0,left:0,right:0,padding:"14px 14px"}}>
+                <div style={{fontSize:7,letterSpacing:"0.22em",textTransform:"uppercase" as const,color:"rgba(255,255,255,0.6)",marginBottom:4}}>India</div>
+                <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:20,fontWeight:300,color:"white",lineHeight:1.1,marginBottom:4}}>Road Books</div>
+                <div style={{fontSize:10,color:"rgba(255,255,255,0.7)",fontWeight:300}}>Roads worth taking →</div>
+              </div>
+            </div>
             <div onClick={()=>onPage("guides")} style={{position:"relative",height:"44vw",maxHeight:180,cursor:"pointer",overflow:"hidden"}}>
               <Img colors={G.stay} photo={PHOTOS.bords_de_mer} style={{position:"absolute",inset:0}}/>
               <div style={{position:"absolute",inset:0,background:"linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.65) 100%)"}}/>
               <div style={{position:"absolute",bottom:0,left:0,right:0,padding:"14px 14px"}}>
-                <div style={{fontSize:7,letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(255,255,255,0.6)",marginBottom:4}}>Download</div>
+                <div style={{fontSize:7,letterSpacing:"0.22em",textTransform:"uppercase" as const,color:"rgba(255,255,255,0.6)",marginBottom:4}}>Download</div>
                 <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:20,fontWeight:300,color:"white",lineHeight:1.1,marginBottom:4}}>City guides</div>
                 <div style={{fontSize:10,color:"rgba(255,255,255,0.7)",fontWeight:300}}>PDF · €15 →</div>
               </div>
             </div>
-            <div onClick={()=>onPage("membership")} style={{position:"relative",height:"44vw",maxHeight:180,cursor:"pointer",overflow:"hidden"}}>
-              <Img colors={G.food} photo={PHOTOS.livingston} style={{position:"absolute",inset:0}}/>
-              <div style={{position:"absolute",inset:0,background:"linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.65) 100%)"}}/>
-              <div style={{position:"absolute",bottom:0,left:0,right:0,padding:"14px 14px"}}>
-                <div style={{fontSize:7,letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(255,255,255,0.6)",marginBottom:4}}>Join</div>
-                <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:20,fontWeight:300,color:"white",lineHeight:1.1,marginBottom:4}}>Membership</div>
-                <div style={{fontSize:10,color:"rgba(255,255,255,0.7)",fontWeight:300}}>€7/month →</div>
-              </div>
+          </div>
+          <div onClick={()=>onPage("membership")} style={{position:"relative",height:"36vw",maxHeight:160,cursor:"pointer",overflow:"hidden"}}>
+            <Img colors={G.food} photo={PHOTOS.livingston} style={{position:"absolute",inset:0}}/>
+            <div style={{position:"absolute",inset:0,background:"linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.65) 100%)"}}/>
+            <div style={{position:"absolute",bottom:0,left:0,right:0,padding:"14px 14px"}}>
+              <div style={{fontSize:7,letterSpacing:"0.22em",textTransform:"uppercase" as const,color:"rgba(255,255,255,0.6)",marginBottom:4}}>Join</div>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:20,fontWeight:300,color:"white",lineHeight:1.1,marginBottom:4}}>Membership</div>
+              <div style={{fontSize:10,color:"rgba(255,255,255,0.7)",fontWeight:300}}>€7/month →</div>
             </div>
           </div>
         </div>
@@ -1076,7 +1227,14 @@ export default function App() {
   const [page, setPage] = useState<string | null>(null);
   const goBack = () => { setPage(null); setCity(null); };
 
-  if (page === "concierge") return (
+  if (page === "roadtrips") return (
+    <><style>{css}</style>
+    <div className="salt-wrap" style={{minHeight:"100vh",background:T.cream}}>
+      <div className="nav"><div className="brand" onClick={goBack}><div className="brand-name">Salt</div></div><button className="menu-btn" onClick={()=>setMenu(true)}><div className="ml"/><div className="ml"/><div className="ml"/></button></div>
+      {menu&&<Menu onClose={()=>setMenu(false)} onCity={(c)=>{setCity(c);setMenu(false);setPage(null);}}/>}
+      <RoadTripsPage onBack={goBack}/>
+    </div></>
+  );
     <><style>{css}</style>
     <div className="salt-wrap" style={{minHeight:"100vh",background:T.cream}}>
       <div className="nav"><div className="brand" onClick={goBack}><div className="brand-name">Salt</div></div><button className="menu-btn" onClick={()=>setMenu(true)}><div className="ml"/><div className="ml"/><div className="ml"/></button></div>
@@ -1120,6 +1278,7 @@ export default function App() {
           </div>
           <div className="nav-links-row">
             <button className="nav-link-btn" onClick={()=>setPage("itineraries")}>Days</button>
+            <button className="nav-link-btn" onClick={()=>setPage("roadtrips")}>Road Books</button>
             <button className="nav-link-btn" onClick={()=>setPage("guides")}>Guides</button>
             <button className="nav-link-btn accent" onClick={()=>setPage("concierge")}>Concierge</button>
           </div>
