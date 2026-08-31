@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  body { margin: 0; background: #0f0e0d; }
+  a { color: #f2efe8; text-decoration: none; }
+  a:hover { color: #c8f052; }
+  ::selection { background: #c8f052; color: #0f0e0d; }
+</style>
+</helmet>
+
+<div style="background: #0f0e0d; color: #f2efe8; font-family: 'IBM Plex Mono', monospace; min-height: 100vh; overflow-x: hidden">
+
+  <header style="position: sticky; top: 0; z-index: 60; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding: 12px clamp(14px, 3vw, 40px); background: #0f0e0d; border-bottom: 1px solid #2a2724">
+    <a href="Home-Loud.dc.html" style="display: flex; align-items: center; gap: 8px; margin-right: auto">
+      <span style="background: #c8f052; color: #0f0e0d; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: -0.04em; padding: 3px 7px 4px; text-transform: uppercase">Salt</span>
+      <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: -0.03em; text-transform: uppercase">The Salt Guide</span>
+    </a>
+    <nav style="display: flex; gap: 18px; flex-wrap: wrap; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase">
+      <a href="Browse-Loud.dc.html" style="color: #c8f052">Stays</a>
+      <a href="Places-Loud.dc.html">Places</a>
+      <a href="Journeys.html">Journeys</a>
+      <a href="Home-Loud.dc.html#guide">Guide</a>
+    </nav>
+    <a href="#book" style="background: #c8f052; color: #0f0e0d; padding: 9px 14px; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase" style-hover="background: #ff3d8b; color: #f2efe8">Reserve</a>
+  </header>
+
+  <section style="padding: 14px clamp(14px, 3vw, 40px) 0; display: flex; gap: 14px; flex-wrap: wrap; align-items: baseline; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(242,239,232,0.45)">
+    <a href="Browse-Loud.dc.html" style="color: rgba(242,239,232,0.45)">← All fourteen</a>
+    <span>House 01 / 14</span>
+  </section>
+
+  <section style="padding: clamp(14px, 2.4vw, 26px) clamp(14px, 3vw, 40px) 0">
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px">
+      <span style="background: #c8f052; color: #0f0e0d; font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; padding: 6px 10px">Instant book</span>
+      <span style="border: 1px solid #2a2724; font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; padding: 6px 10px; color: rgba(242,239,232,0.7)">Assagao, Goa</span>
+      <span style="border: 1px solid #2a2724; font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; padding: 6px 10px; color: rgba(242,239,232,0.7)">Sleeps 8 · 4 bedrooms</span>
+    </div>
+    <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(40px, 9.6vw, 140px); line-height: 0.82; letter-spacing: -0.05em; text-transform: uppercase; margin: 0">Casa<br>Palmeira<span style="color: #c8f052">.</span></h1>
+  </section>
+
+  <section style="padding: clamp(18px, 2.6vw, 30px) clamp(14px, 3vw, 40px) 0">
+    <div style="position: relative; aspect-ratio: 16/9; overflow: hidden; background: #171514">
+      <img src="{{ heroPhoto }}" alt="Casa Palmeira" style="width: 100%; height: 100%; object-fit: cover">
+      <div style="position: absolute; bottom: 0; left: 0; background: #0f0e0d; padding: 8px 12px; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(242,239,232,0.7)">{{ heroCaption }}</div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 6px; margin-top: 6px">
+      <sc-for list="{{ thumbs }}" as="t" hint-placeholder-count="6">
+        <button onClick="{{ t.pick }}" style="all: unset; cursor: pointer; display: block; position: relative; aspect-ratio: 3/2; overflow: hidden; background: #171514; outline: {{ t.ring }}; outline-offset: -2px">
+          <img src="{{ t.src }}" alt="" style="width: 100%; height: 100%; object-fit: cover; opacity: {{ t.opacity }}">
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(20px, 3vw, 48px); padding: clamp(26px, 4vw, 56px) clamp(14px, 3vw, 40px)">
+
+    <div>
+      <div style="font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #ff3d8b; margin-bottom: 14px">Why we chose it</div>
+      <p style="font-size: clamp(14px, 1.5vw, 19px); line-height: 1.6; margin: 0 0 18px; text-wrap: pretty">A Portuguese-era house behind a laterite wall, restored with almost nothing added. The floors, the shutters and the courtyard are the ones it was built with.</p>
+      <p style="font-size: 13px; line-height: 1.8; color: rgba(242,239,232,0.62); margin: 0 0 18px; text-wrap: pretty">Four bedrooms sit around the courtyard, so nobody walks through anybody else's room. The verandah runs the length of the house and takes the afternoon — that is where everyone ends up, and where dinner happens if the evening is warm enough.</p>
+      <p style="font-size: 13px; line-height: 1.8; color: rgba(242,239,232,0.62); margin: 0; text-wrap: pretty">The cook has been here longer than the owners. Ask her what she'd make rather than handing her a menu, and eat that. Two nights is enough. Four is better.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: #2a2724; margin-top: clamp(24px, 3vw, 36px)">
+        <div style="background: #0f0e0d; padding: 16px 4px 18px 0">
+          <div style="font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(242,239,232,0.45)">Bedrooms</div>
+          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.03em; margin-top: 4px">4</div>
+        </div>
+        <div style="background: #0f0e0d; padding: 16px 4px 18px 14px">
+          <div style="font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(242,239,232,0.45)">Bathrooms</div>
+          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.03em; margin-top: 4px">4</div>
+        </div>
+        <div style="background: #0f0e0d; padding: 16px 4px 18px 14px">
+          <div style="font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(242,239,232,0.45)">Sleeps</div>
+          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.03em; margin-top: 4px">8</div>
+        </div>
+        <div style="background: #0f0e0d; padding: 16px 4px 18px 14px">
+          <div style="font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(242,239,232,0.45)">Min stay</div>
+          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.03em; margin-top: 4px">2 nts</div>
+        </div>
+      </div>
+
+      <div style="margin-top: clamp(28px, 3.6vw, 44px)">
+        <div style="font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #ff3d8b; margin-bottom: 14px">The house</div>
+        <div style="display: grid; gap: 1px; background: #2a2724">
+          <div style="background: #0f0e0d; display: flex; gap: 14px; flex-wrap: wrap; padding: 14px 0">
+            <span style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(242,239,232,0.45); min-width: 92px">Courtyard</span>
+            <span style="font-size: 13px; line-height: 1.6; color: rgba(242,239,232,0.8); flex: 1; min-width: 200px">Open to the sky, tiled, one frangipani. Coffee happens here at seven.</span>
+          </div>
+          <div style="background: #0f0e0d; display: flex; gap: 14px; flex-wrap: wrap; padding: 14px 0">
+            <span style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(242,239,232,0.45); min-width: 92px">Verandah</span>
+            <span style="font-size: 13px; line-height: 1.6; color: rgba(242,239,232,0.8); flex: 1; min-width: 200px">Full length of the house, deep enough to stay dry in a downpour. Two planter's chairs, one long table.</span>
+          </div>
+          <div style="background: #0f0e0d; display: flex; gap: 14px; flex-wrap: wrap; padding: 14px 0">
+            <span style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(242,239,232,0.45); min-width: 92px">Pool</span>
+            <span style="font-size: 13px; line-height: 1.6; color: rgba(242,239,232,0.8); flex: 1; min-width: 200px">Twelve metres, in the garden behind the wall. Shaded until eleven.</span>
+          </div>
+          <div style="background: #0f0e0d; display: flex; gap: 14px; flex-wrap: wrap; padding: 14px 0">
+            <span style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(242,239,232,0.45); min-width: 92px">Kitchen</span>
+            <span style="font-size: 13px; line-height: 1.6; color: rgba(242,239,232,0.8); flex: 1; min-width: 200px">Staffed. Breakfast included, other meals cooked on request and charged at cost.</span>
+          </div>
+          <div style="background: #0f0e0d; display: flex; gap: 14px; flex-wrap: wrap; padding: 14px 0">
+            <span style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(242,239,232,0.45); min-width: 92px">Getting here</span>
+            <span style="font-size: 13px; line-height: 1.6; color: rgba(242,239,232,0.8); flex: 1; min-width: 200px">Forty minutes from Dabolim, twenty from Mapusa. A car is worth having.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div id="book" style="position: sticky; top: 68px; border: 1px solid #2a2724; background: #171514">
+        <div style="padding: 20px 20px 0">
+          <div style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap">
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(28px, 3vw, 40px); color: #c8f052; letter-spacing: -0.04em">₹32,000</span>
+            <span style="font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(242,239,232,0.45)">/ night · whole house</span>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1px; background: #2a2724; margin: 18px 0 0">
+          <label style="display: block; background: #171514; padding: 12px 16px">
+            <span style="display: block; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.45); margin-bottom: 5px">Arrive</span>
+            <input value="14 Nov" style="width: 100%; border: 0; background: none; outline: none; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #f2efe8">
+          </label>
+          <label style="display: block; background: #171514; padding: 12px 16px">
+            <span style="display: block; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.45); margin-bottom: 5px">Leave</span>
+            <input value="17 Nov" style="width: 100%; border: 0; background: none; outline: none; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #f2efe8">
+          </label>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 14px 16px; border-top: 1px solid #2a2724">
+          <span style="font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.45); margin-right: auto">Nights</span>
+          <button onClick="{{ fewerNights }}" style="all: unset; cursor: pointer; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border: 1px solid #2a2724; font-size: 14px" style-hover="border-color: #c8f052; color: #c8f052">−</button>
+          <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 18px; min-width: 22px; text-align: center">{{ nights }}</span>
+          <button onClick="{{ moreNights }}" style="all: unset; cursor: pointer; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border: 1px solid #2a2724; font-size: 14px" style-hover="border-color: #c8f052; color: #c8f052">+</button>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 14px 16px; border-top: 1px solid #2a2724">
+          <span style="font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.45); margin-right: auto">Guests</span>
+          <button onClick="{{ fewerGuests }}" style="all: unset; cursor: pointer; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border: 1px solid #2a2724; font-size: 14px" style-hover="border-color: #c8f052; color: #c8f052">−</button>
+          <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 18px; min-width: 22px; text-align: center">{{ guests }}</span>
+          <button onClick="{{ moreGuests }}" style="all: unset; cursor: pointer; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border: 1px solid #2a2724; font-size: 14px" style-hover="border-color: #c8f052; color: #c8f052">+</button>
+        </div>
+
+        <div style="padding: 16px; border-top: 1px solid #2a2724; display: grid; gap: 8px">
+          <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 12px; color: rgba(242,239,232,0.62)">
+            <span>{{ rateLine }}</span><span>{{ subtotal }}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 12px; color: rgba(242,239,232,0.62)">
+            <span>Housekeeping</span><span>₹4,000</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 12px; color: rgba(242,239,232,0.62)">
+            <span>Taxes (12%)</span><span>{{ tax }}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline; padding-top: 12px; margin-top: 4px; border-top: 1px solid #2a2724">
+            <span style="font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase">Total</span>
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; color: #c8f052; letter-spacing: -0.03em">{{ total }}</span>
+          </div>
+        </div>
+
+        <div style="padding: 0 16px 16px; display: grid; gap: 8px">
+          <button style="border: 0; cursor: pointer; background: #c8f052; color: #0f0e0d; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; padding: 16px; min-height: 48px; text-align: left" style-hover="background: #ff3d8b; color: #0f0e0d" onClick="{{ goBooking }}">Reserve these nights →</button>
+          <a href="Concierge-Loud.dc.html" style="display: block; border: 1px solid #2a2724; padding: 15px 16px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(242,239,232,0.8)" style-hover="border-color: #f2efe8; color: #f2efe8">Ask the concierge instead →</a>
+          <p style="font-size: 11px; line-height: 1.7; color: rgba(242,239,232,0.58); margin: 4px 0 0">Free cancellation up to 14 days before arrival. {{ minStayNote }}</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section style="border-top: 1px solid #2a2724; padding: clamp(26px, 4vw, 56px) clamp(14px, 3vw, 40px)">
+    <div style="display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: clamp(16px, 2.2vw, 26px)">
+      <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(26px, 4.6vw, 62px); line-height: 0.88; letter-spacing: -0.04em; text-transform: uppercase; margin: 0; margin-right: auto">Around the house</h2>
+      <span style="font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #ff3d8b">From the Guide</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(10px, 1.4vw, 20px)">
+      <a href="Home-Loud.dc.html#guide" style="display: block; background: #171514" style-hover="background: #1f1c1a">
+        <div style="aspect-ratio: 3/2; overflow: hidden">
+          <img src="https://res.cloudinary.com/dhok4m7m3/image/upload/q_auto/f_auto/v1781364411/IMG_0093_b2bz91.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover">
+        </div>
+        <div style="padding: 14px 16px 18px">
+          <div style="font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #c8f052; margin-bottom: 6px">Eat · 6 min drive</div>
+          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.03em; text-transform: uppercase; margin-bottom: 6px">The Assagao table</div>
+          <p style="font-size: 12px; line-height: 1.7; color: rgba(242,239,232,0.55); margin: 0">Book the second evening here, not the first — you'll want the kitchen at home on night one.</p>
+        </div>
+      </a>
+      <a href="Home-Loud.dc.html#guide" style="display: block; background: #171514" style-hover="background: #1f1c1a">
+        <div style="aspect-ratio: 3/2; overflow: hidden">
+          <img src="https://res.cloudinary.com/dhok4m7m3/image/upload/q_auto/f_auto/v1781459532/IMG_0138_zjohfb.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover">
+        </div>
+        <div style="padding: 14px 16px 18px">
+          <div style="font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #c8f052; margin-bottom: 6px">Shop · 20 min drive</div>
+          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.03em; text-transform: uppercase; margin-bottom: 6px">Mapusa market</div>
+          <p style="font-size: 12px; line-height: 1.7; color: rgba(242,239,232,0.55); margin: 0">Friday morning only. Go early, go hungry, and give the cook a budget.</p>
+        </div>
+      </a>
+      <a href="Home-Loud.dc.html#guide" style="display: block; background: #171514" style-hover="background: #1f1c1a">
+        <div style="aspect-ratio: 3/2; overflow: hidden">
+          <img src="https://res.cloudinary.com/dhok4m7m3/image/upload/q_auto/f_auto/v1780744557/IMG_0065_nmuuo2.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover">
+        </div>
+        <div style="padding: 14px 16px 18px">
+          <div style="font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #c8f052; margin-bottom: 6px">Do · 25 min drive</div>
+          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.03em; text-transform: uppercase; margin-bottom: 6px">The river at dawn</div>
+          <p style="font-size: 12px; line-height: 1.7; color: rgba(242,239,232,0.55); margin: 0">Leave at six with a thermos. Back before the house is awake.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section style="background: #ff3d8b; color: #0f0e0d; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))">
+    <div style="position: relative; min-height: 300px; overflow: hidden">
+      <img src="https://res.cloudinary.com/dhok4m7m3/image/upload/q_auto/f_auto/v1781431007/image_i3krkr.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+    </div>
+    <div style="padding: clamp(20px, 3.4vw, 56px); display: flex; flex-direction: column; justify-content: center; gap: 14px">
+      <div style="font-size: 10px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase">Also in Goa</div>
+      <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(28px, 4.6vw, 62px); line-height: 0.88; letter-spacing: -0.04em; text-transform: uppercase; margin: 0">Four more houses</h2>
+      <p style="font-size: 13px; line-height: 1.7; margin: 0; max-width: 40ch; text-wrap: pretty">A river house in Siolim, a top-floor flat in Anjuna, seven rooms inside a fort at the top of the state, and a ten-sleeper in Aldona with a chapel in the garden.</p>
+      <a href="Browse-Loud.dc.html" style="align-self: start; background: #0f0e0d; color: #f2efe8; padding: 15px 20px; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase" style-hover="background: #c8f052; color: #0f0e0d">See all of Goa →</a>
+    </div>
+  </section>
+
+  <footer style="padding: clamp(20px, 3vw, 36px) clamp(14px, 3vw, 40px)">
+    <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 11vw, 150px); line-height: 0.82; letter-spacing: -0.05em; text-transform: uppercase">The Salt Guide</div>
+    <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: baseline; padding-top: 16px; margin-top: 16px; border-top: 1px solid #2a2724; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(242,239,232,0.45)">
+      <span style="margin-right: auto">© 2026 · Stays, tables and roads</span>
+      <a href="#" style="color: rgba(242,239,232,0.45)">Instagram</a>
+      <a href="#" style="color: rgba(242,239,232,0.45)">Newsletter</a>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+const CDN = "https://res.cloudinary.com/dhok4m7m3/image/upload/q_auto/f_auto";
+
+const GALLERY = [
+  { src: `${CDN}/v1781430956/image_lgznwz.jpg`, caption: "The courtyard, seven in the morning" },
+  { src: `${CDN}/v1781431041/image_oj7ux2.jpg`, caption: "The verandah, full length of the house" },
+  { src: `${CDN}/v1781431007/image_i3krkr.jpg`, caption: "Bedroom two, shutters open" },
+  { src: `${CDN}/v1781431076/image_vqhyj7.jpg`, caption: "The long table, laid for eight" },
+  { src: `${CDN}/v1781431115/IMG_0123_fwcmpj.jpg`, caption: "The pool, shaded until eleven" },
+  { src: `${CDN}/v1781431091/image_xsl88e.jpg`, caption: "The wall from the lane" },
+];
+
+const RATE = 32000, CLEANING = 4000, MIN_NIGHTS = 2, MAX_GUESTS = 8;
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { photo: 0, nights: 3, guests: 4 };
+  }
+
+  renderVals() {
+    const st = this.state || {};
+    const photo = st.photo || 0;
+    const nights = st.nights || 3;
+    const guests = st.guests || 4;
+    const fmt = n => "₹" + Math.round(n).toLocaleString("en-IN");
+    const sub = RATE * nights;
+    const tax = (sub + CLEANING) * 0.12;
+
+    return {
+      heroPhoto: GALLERY[photo].src,
+      heroCaption: GALLERY[photo].caption,
+      thumbs: GALLERY.map((g, i) => ({
+        src: g.src,
+        pick: () => this.setState({ photo: i }),
+        ring: i === photo ? "2px solid #c8f052" : "0",
+        opacity: i === photo ? 1 : 0.55,
+      })),
+      nights, guests,
+      rateLine: fmt(RATE) + " × " + nights + (nights === 1 ? " night" : " nights"),
+      subtotal: fmt(sub),
+      tax: fmt(tax),
+      total: fmt(sub + CLEANING + tax),
+      minStayNote: nights <= MIN_NIGHTS ? "Two nights is the minimum stay." : "",
+      goBooking: () => { window.location.href = "Booking-Loud.dc.html"; },
+      moreNights: () => this.setState(s => ({ nights: Math.min(21, (s.nights || 3) + 1) })),
+      fewerNights: () => this.setState(s => ({ nights: Math.max(MIN_NIGHTS, (s.nights || 3) - 1) })),
+      moreGuests: () => this.setState(s => ({ guests: Math.min(MAX_GUESTS, (s.guests || 4) + 1) })),
+      fewerGuests: () => this.setState(s => ({ guests: Math.max(1, (s.guests || 4) - 1) })),
+    };
+  }
+}
+</script>
+</body>
+</html>

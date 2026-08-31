@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  body { margin: 0; background: #0f0e0d; }
+  a { color: #f2efe8; text-decoration: none; }
+  a:hover { color: #c8f052; }
+  ::selection { background: #c8f052; color: #0f0e0d; }
+</style>
+</helmet>
+
+<div style="background: #0f0e0d; color: #f2efe8; font-family: 'IBM Plex Mono', monospace; min-height: 100vh; overflow-x: hidden">
+
+  <header style="position: sticky; top: 0; z-index: 60; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding: 12px clamp(14px, 3vw, 40px); background: #0f0e0d; border-bottom: 1px solid #2a2724">
+    <a href="Home-Loud.dc.html" style="display: flex; align-items: center; gap: 8px; margin-right: auto">
+      <span style="background: #c8f052; color: #0f0e0d; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: -0.04em; padding: 3px 7px 4px; text-transform: uppercase">Salt</span>
+      <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: -0.03em; text-transform: uppercase">The Salt Guide</span>
+    </a>
+    <nav style="display: flex; gap: 18px; flex-wrap: wrap; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase">
+      <a href="Browse-Loud.dc.html">Stays</a>
+      <a href="Places-Loud.dc.html">Places</a>
+      <a href="Journeys.html">Journeys</a>
+      <a href="#" style="color: #c8f052">Guide</a>
+    </nav>
+    <a href="Concierge-Loud.dc.html" style="background: #c8f052; color: #0f0e0d; padding: 9px 14px; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase" style-hover="background: #ff3d8b; color: #f2efe8">Concierge</a>
+  </header>
+
+  <section style="padding: clamp(24px, 4vw, 56px) clamp(14px, 3vw, 40px) clamp(16px, 2.4vw, 28px)">
+    <div style="font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #ff3d8b; margin-bottom: 12px">The Guide</div>
+    <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(40px, 9.6vw, 150px); line-height: 0.82; letter-spacing: -0.05em; text-transform: uppercase; margin: 0 0 16px">Everything<br>around<br>the houses<span style="color: #c8f052">.</span></h1>
+    <p style="font-size: clamp(12px, 1.25vw, 16px); line-height: 1.7; color: rgba(242,239,232,0.68); max-width: 54ch; margin: 0; text-wrap: pretty">Tables, mornings, water and shops — in the four places we know well enough to send you somewhere specific. Nothing here is sponsored and nothing is on a list because it's famous.</p>
+  </section>
+
+  <section style="position: sticky; top: 53px; z-index: 50; background: #0f0e0d; border-top: 1px solid #2a2724; border-bottom: 1px solid #2a2724; padding: 14px clamp(14px, 3vw, 40px)">
+    <div style="display: flex; gap: 26px; flex-wrap: wrap; align-items: flex-start">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(242,239,232,0.5)">What</span>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap">
+          <sc-for list="{{ catTabs }}" as="t" hint-placeholder-count="5">
+            <button onClick="{{ t.pick }}" style="cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 10px 13px; min-height: 40px; border: 1px solid #2a2724; background: {{ t.bg }}; color: {{ t.fg }}">{{ t.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(242,239,232,0.5)">Where</span>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap">
+          <sc-for list="{{ placeTabs }}" as="t" hint-placeholder-count="5">
+            <button onClick="{{ t.pick }}" style="cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 10px 13px; min-height: 40px; border: 1px solid #2a2724; background: {{ t.bg }}; color: {{ t.fg }}">{{ t.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 18px clamp(14px, 3vw, 40px) 0">
+    <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.03em; text-transform: uppercase">{{ countLabel }}</div>
+    <div style="flex: 1; min-width: 30px; height: 1px; background: #2a2724"></div>
+    <button onClick="{{ clearAll }}" style="cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 0; min-height: 36px; border: 0; background: none; color: #ff3d8b">Show everything</button>
+  </section>
+
+  <section style="padding: clamp(16px, 2.4vw, 28px) clamp(14px, 3vw, 40px) clamp(36px, 5vw, 80px); display: grid; gap: 1px; background: #2a2724">
+    <sc-for list="{{ entries }}" as="e" hint-placeholder-count="6">
+      <article style="background: #0f0e0d; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(14px, 2vw, 28px); padding: clamp(16px, 2.4vw, 28px) 0; align-items: start; cursor: pointer" style-hover="background: #171514">
+        <div style="position: relative; aspect-ratio: 4/3; overflow: hidden; background: #1a1817">
+          <img src="{{ e.photo }}" alt="{{ e.name }}" style="width: 100%; height: 100%; object-fit: cover">
+          <span style="position: absolute; top: 0; left: 0; background: {{ e.catBg }}; color: #0f0e0d; font-size: 9px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; padding: 7px 11px">{{ e.cat }}</span>
+        </div>
+        <div style="padding-right: clamp(0px, 1vw, 16px)">
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(242,239,232,0.55); margin-bottom: 9px">
+            <span style="color: #c8f052">{{ e.place }}</span><span>{{ e.meta }}</span>
+          </div>
+          <h3 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(24px, 3.2vw, 44px); line-height: 0.9; letter-spacing: -0.04em; text-transform: uppercase; margin: 0 0 12px; text-wrap: balance">{{ e.name }}</h3>
+          <p style="font-size: 13px; line-height: 1.8; color: rgba(242,239,232,0.68); margin: 0 0 14px; max-width: 56ch; text-wrap: pretty">{{ e.note }}</p>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap; padding-top: 12px; border-top: 1px solid #2a2724; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(242,239,232,0.55)">
+            <span style="color: #f2efe8">{{ e.when }}</span><span>{{ e.tip }}</span>
+          </div>
+        </div>
+      </article>
+    </sc-for>
+  </section>
+
+  <section style="background: #c8f052; color: #0f0e0d; padding: clamp(28px, 4.6vw, 80px) clamp(14px, 3vw, 40px)">
+    <div style="max-width: 780px">
+      <div style="font-size: 10px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; margin-bottom: 14px">Missing something?</div>
+      <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 5.6vw, 82px); line-height: 0.84; letter-spacing: -0.05em; text-transform: uppercase; margin: 0 0 18px">Ask for the one that isn't written down.</h2>
+      <p style="font-size: 14px; line-height: 1.75; margin: 0 0 24px; max-width: 46ch; text-wrap: pretty">Some addresses we won't publish — the two-table places that would stop being themselves. Tell us what you're after and we'll say it in an email instead.</p>
+      <a href="Concierge-Loud.dc.html" style="display: inline-block; background: #0f0e0d; color: #f2efe8; padding: 16px 22px; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase" style-hover="background: #ff3d8b; color: #0f0e0d">Ask the concierge →</a>
+    </div>
+  </section>
+
+  <footer style="padding: clamp(20px, 3vw, 36px) clamp(14px, 3vw, 40px)">
+    <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 11vw, 150px); line-height: 0.82; letter-spacing: -0.05em; text-transform: uppercase">The Salt Guide</div>
+    <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: baseline; padding-top: 16px; margin-top: 16px; border-top: 1px solid #2a2724; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(242,239,232,0.5)">
+      <span style="margin-right: auto">© 2026 · Stays, tables and roads</span>
+      <a href="#" style="color: rgba(242,239,232,0.5)">Instagram</a>
+      <a href="#" style="color: rgba(242,239,232,0.5)">Newsletter</a>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+const CDN = "https://res.cloudinary.com/dhok4m7m3/image/upload/q_auto/f_auto";
+const LIME = "#c8f052", PINK = "#ff3d8b", BONE = "#f2efe8";
+const CAT_BG = { "Eat & drink": BONE, "To do": LIME, "Adventure": PINK, "Shop": BONE };
+
+const ENTRIES = [
+  // ── Eat & drink
+  { cat: "Eat & drink", place: "Goa", name: "The long lunch", meta: "Assagao", when: "Lunch only", tip: "Book before you fly", photo: `${CDN}/v1781364411/IMG_0093_b2bz91.jpg`,
+    note: "Goan-Portuguese cooking in a garden, no menu after two o'clock. Put it on the second day, not the first — you'll want the cook at home on night one." },
+  { cat: "Eat & drink", place: "Goa", name: "Fish and nothing else", meta: "Siolim", when: "Cash only", tip: "Go at one, not eight", photo: `${CDN}/v1781364527/image_ntlnlc.jpg`,
+    note: "Plastic chairs, one fryer, whatever came in that morning chalked on a board. The best meal you'll eat all week and the cheapest by a distance." },
+  { cat: "Eat & drink", place: "Goa", name: "The bakery at seven", meta: "Anjuna", when: "Sold out by ten", tip: "Walk, don't drive", photo: `${CDN}/v1781458253/IMG_0127_powxsu.jpg`,
+    note: "Sourdough, poi and a coffee worth crossing the river for. Go before the yoga classes finish or don't go at all." },
+  { cat: "Eat & drink", place: "Bombay", name: "The Irani at eight", meta: "Fort", when: "Breakfast", tip: "Bun maska, keema, chai", photo: `${CDN}/v1781364498/IMG_0099_q87scj.jpg`,
+    note: "Marble tables, bentwood chairs, the same order for a hundred years. Sit at the back, read the paper, don't ask for oat milk." },
+  { cat: "Eat & drink", place: "Bombay", name: "The seafood room", meta: "Colaba", when: "Dinner", tip: "Order the crab", photo: `${CDN}/v1781364536/IMG_0103_yyykdc.jpg`,
+    note: "Loud, bright, forty years old and completely unbothered by fashion. Butter garlic crab and one beer is the whole review." },
+  { cat: "Eat & drink", place: "Bombay", name: "The last bar", meta: "Ballard Estate", when: "From six", tip: "Ask for the back room", photo: `${CDN}/v1781364450/IMG_0095_pgwwks.jpg`,
+    note: "A serious short list and a bartender who'd rather make you something than sell you the list. Two drinks, then walk to dinner." },
+  { cat: "Eat & drink", place: "Alibag", name: "The shack past the fort", meta: "Kihim", when: "Lunch", tip: "Ring an hour ahead", photo: `${CDN}/v1781364575/IMG_0107_nsbnhh.jpg`,
+    note: "Six tables under a tin roof and a woman who cooks one thali and one fish. Call before you set out so she buys enough." },
+  { cat: "Eat & drink", place: "Kerala", name: "The toddy shop", meta: "Wayanad", when: "Afternoons", tip: "Eat first, drink second", photo: `${CDN}/v1781364475/image_jspyla.jpg`,
+    note: "Fresh toddy, beef fry, tapioca, and a room that goes quiet when you walk in and then doesn't. Take the estate manager with you." },
+
+  // ── To do
+  { cat: "To do", place: "Goa", name: "The river at dawn", meta: "Chapora", when: "6am", tip: "Take a thermos", photo: `${CDN}/v1780744557/IMG_0065_nmuuo2.jpg`,
+    note: "Out before the light, back before the house is awake. Birds, mangroves, one dolphin if you're lucky and quiet." },
+  { cat: "To do", place: "Goa", name: "Mapusa market", meta: "Mapusa", when: "Fridays", tip: "Go by eight", photo: `${CDN}/v1781459532/IMG_0138_zjohfb.jpg`,
+    note: "Friday morning only. Spice, sausage, produce and the pickled things you'll regret not buying. Give the cook a budget and set her loose." },
+  { cat: "To do", place: "Goa", name: "The old houses", meta: "Aldona · Chandor", when: "Half day", tip: "Cash for the caretaker", photo: `${CDN}/v1781430996/IMG_0116_vrbu3q.jpg`,
+    note: "Two of the great Indo-Portuguese houses, still lived in, opened by the families themselves. Ring ahead — this is someone's home." },
+  { cat: "To do", place: "Bombay", name: "The fish dock at five", meta: "Sassoon Dock", when: "5am", tip: "Wear shoes you'll bin", photo: `${CDN}/v1781364487/image_knutb6.jpg`,
+    note: "An hour of the city working before the city is awake. Loud, wet, extraordinary. Go once and you'll understand the food here." },
+  { cat: "To do", place: "Bombay", name: "The walk south", meta: "Fort · Kala Ghoda", when: "Any morning", tip: "Sunday is emptiest", photo: `${CDN}/v1781364544/IMG_0104_at2bdp.jpg`,
+    note: "Two hours on foot through the best nineteenth-century street architecture in India, ending at a museum you should give an hour." },
+  { cat: "To do", place: "Alibag", name: "The fort at low tide", meta: "Kolaba Fort", when: "Check the tide", tip: "Walk out, don't ride", photo: `${CDN}/v1780744556/IMG_0062_fkpv1u.jpg`,
+    note: "You can walk to it when the water goes out and not when it doesn't. Ask the house what time — they know better than the internet." },
+  { cat: "To do", place: "Kerala", name: "The estate walk", meta: "Wayanad", when: "Before breakfast", tip: "Long sleeves", photo: `${CDN}/v1781431125/IMG_0124_crwztm.jpg`,
+    note: "An hour through coffee under silver oak with someone who can tell you what everything is. The reason to come, and it's free." },
+
+  // ── Adventure
+  { cat: "Adventure", place: "Alibag", name: "Kite season", meta: "Mandwa", when: "Nov – Feb", tip: "Two days minimum", photo: `${CDN}/v1781430981/IMG_0114_wpsgu2.jpg`,
+    note: "Steady cross-shore wind and an empty stretch to learn on. The school is one man and it's better for it." },
+  { cat: "Adventure", place: "Goa", name: "Up the river by kayak", meta: "Nerul", when: "Early or late", tip: "Not in May", photo: `${CDN}/v1781431115/IMG_0123_fwcmpj.jpg`,
+    note: "Three hours upstream through mangrove channels too narrow for boats. Kingfishers, eagles, no engines, nobody else." },
+  { cat: "Adventure", place: "Kerala", name: "The two-day trek", meta: "Chembra", when: "Oct – Mar", tip: "Permit needed", photo: `${CDN}/v1781431058/IMG_0119_sgvmyy.jpg`,
+    note: "Up through grassland to a heart-shaped tarn and a night in a tent at altitude. Guided, permitted, and worth the paperwork." },
+  { cat: "Adventure", place: "Bombay", name: "Sail out of the harbour", meta: "Gateway", when: "Evenings", tip: "Sunset, not noon", photo: `${CDN}/v1781431076/image_vqhyj7.jpg`,
+    note: "Two hours on the water with the skyline going gold behind you. The most underused thing in the city." },
+
+  // ── Shop
+  { cat: "Shop", place: "Goa", name: "The textile room", meta: "Sangolda", when: "Tue – Sat", tip: "Ask for the back room", photo: `${CDN}/v1781458382/image_pkklnm.jpg`,
+    note: "Block-printed cotton and old kanthas in a converted stable. The good things never make it to the shelves — so ask." },
+  { cat: "Shop", place: "Goa", name: "Pottery, seconds", meta: "Moira", when: "Mornings", tip: "Bring bubble wrap", photo: `${CDN}/v1781458403/IMG_0135_qskd2i.jpg`,
+    note: "A working studio that sells its imperfect pieces off a table by the gate. The imperfections are the reason to buy them." },
+  { cat: "Shop", place: "Bombay", name: "The old chemist", meta: "Fort", when: "Mon – Sat", tip: "Buy the sandalwood", photo: `${CDN}/v1781458415/image_qvbg7z.jpg`,
+    note: "Teak cabinets, glass jars, a hundred years of soap and oils. The best twenty-rupee present you'll ever give anyone." },
+  { cat: "Shop", place: "Kerala", name: "Spice, by weight", meta: "Thekkady", when: "Daily", tip: "Vacuum pack it", photo: `${CDN}/v1781458325/IMG_0130_zkekcn.jpg`,
+    note: "Cardamom and pepper sold by the kilo where it's grown, at a quarter of the airport price. Take an empty bag." },
+];
+
+const CATS = ["All", "Eat & drink", "To do", "Adventure", "Shop"];
+const PLACES = ["All", "Goa", "Alibag", "Bombay", "Kerala"];
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cat: "All", place: "All" };
+  }
+
+  tabs(list, key) {
+    const cur = (this.state || {})[key] || "All";
+    return list.map(v => ({
+      label: v === "All" ? (key === "cat" ? "Everything" : "Anywhere") : v,
+      pick: () => this.setState({ [key]: v }),
+      bg: cur === v ? "#c8f052" : "transparent",
+      fg: cur === v ? "#0f0e0d" : "rgba(242,239,232,0.72)",
+    }));
+  }
+
+  renderVals() {
+    const st = this.state || {};
+    const cat = st.cat || "All", place = st.place || "All";
+    const entries = ENTRIES.filter(e =>
+      (cat === "All" || e.cat === cat) && (place === "All" || e.place === place));
+
+    const nouns = cat === "All" ? ["entry", "entries"]
+      : cat === "Eat & drink" ? ["table", "tables"]
+      : cat === "Shop" ? ["address", "addresses"]
+      : ["thing", "things"];
+    const noun = entries.length === 1 ? nouns[0] : nouns[1];
+
+    return {
+      catTabs: this.tabs(CATS, "cat"),
+      placeTabs: this.tabs(PLACES, "place"),
+      countLabel: (entries.length === 0 ? "Nothing" : entries.length + " " + noun)
+        + (place === "All" ? "" : " in " + place),
+      clearAll: () => this.setState({ cat: "All", place: "All" }),
+      entries: entries.map(e => ({
+        cat: e.cat, catBg: CAT_BG[e.cat], place: e.place, name: e.name,
+        meta: e.meta, note: e.note, when: e.when, tip: e.tip, photo: e.photo,
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

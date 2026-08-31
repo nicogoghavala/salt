@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  body { margin: 0; background: #0f0e0d; }
+  a { color: #f2efe8; text-decoration: none; }
+  a:hover { color: #c8f052; }
+  ::selection { background: #c8f052; color: #0f0e0d; }
+  input::placeholder, textarea::placeholder { color: rgba(242,239,232,0.56); }
+</style>
+</helmet>
+
+<div style="background: #0f0e0d; color: #f2efe8; font-family: 'IBM Plex Mono', monospace; min-height: 100vh; overflow-x: hidden">
+
+  <header style="position: sticky; top: 0; z-index: 60; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding: 12px clamp(14px, 3vw, 40px); background: #0f0e0d; border-bottom: 1px solid #2a2724">
+    <a href="Home-Loud.dc.html" style="display: flex; align-items: center; gap: 8px; margin-right: auto">
+      <span style="background: #c8f052; color: #0f0e0d; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: -0.04em; padding: 3px 7px 4px; text-transform: uppercase">Salt</span>
+      <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: -0.03em; text-transform: uppercase">The Salt Guide</span>
+    </a>
+    <nav style="display: flex; gap: 18px; flex-wrap: wrap; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase">
+      <a href="Browse-Loud.dc.html">Stays</a>
+      <a href="Places-Loud.dc.html">Places</a>
+      <a href="Journeys.html">Journeys</a>
+      <a href="Home-Loud.dc.html#guide">Guide</a>
+    </nav>
+  </header>
+
+  <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr))">
+    <div style="padding: clamp(24px, 4vw, 64px) clamp(14px, 3vw, 40px); display: flex; flex-direction: column; justify-content: center; gap: 16px">
+      <div style="font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #ff3d8b">Concierge</div>
+      <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(38px, 7.4vw, 108px); line-height: 0.82; letter-spacing: -0.05em; text-transform: uppercase; margin: 0">One person.<br>Every house.</h1>
+      <p style="font-size: clamp(13px, 1.4vw, 17px); line-height: 1.7; color: rgba(242,239,232,0.72); max-width: 44ch; margin: 0; text-wrap: pretty">Eight of the fourteen houses are held by their owners, so the dates come by conversation rather than a calendar. Tell us the week and we'll come back within a day — with the house, the table on the second evening, and a car if the drive is worth doing.</p>
+      <div style="display: flex; gap: 22px; flex-wrap: wrap; padding-top: 16px; border-top: 1px solid #2a2724; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(242,239,232,0.55)">
+        <span>Reply within 24 hrs</span><span>No fee</span><span>hello@thesaltguide.co</span>
+      </div>
+    </div>
+    <div style="position: relative; min-height: clamp(280px, 46vh, 520px); overflow: hidden">
+      <img src="https://res.cloudinary.com/dhok4m7m3/image/upload/q_auto/f_auto/v1781431041/image_oj7ux2.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+    </div>
+  </section>
+
+  <section style="border-top: 1px solid #2a2724; display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: clamp(20px, 3vw, 48px); padding: clamp(24px, 3.6vw, 56px) clamp(14px, 3vw, 40px) clamp(36px, 5vw, 80px); align-items: start">
+
+    <div>
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <div style="font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #c8f052; margin-bottom: 12px">Sent · SG-ENQ-4471</div>
+          <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 5vw, 68px); line-height: 0.86; letter-spacing: -0.05em; text-transform: uppercase; margin: 0 0 16px">We're on it<span style="color: #c8f052">.</span></h2>
+          <p style="font-size: 14px; line-height: 1.8; color: rgba(242,239,232,0.7); margin: 0 0 22px; max-width: 44ch; text-wrap: pretty">{{ summary }} You'll hear from us within a day — a real reply, not a receipt. If it's urgent, call the number in the email.</p>
+          <button onClick="{{ reset }}" style="border: 1px solid #2a2724; cursor: pointer; background: none; color: rgba(242,239,232,0.6); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; padding: 14px 18px; min-height: 44px">Send another →</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ open }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <div style="font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #ff3d8b; margin-bottom: 14px">What are you after?</div>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 26px">
+            <sc-for list="{{ intents }}" as="i" hint-placeholder-count="4">
+              <button onClick="{{ i.pick }}" style="cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 11px 14px; min-height: 42px; border: 1px solid #2a2724; background: {{ i.bg }}; color: {{ i.fg }}">{{ i.label }}</button>
+            </sc-for>
+          </div>
+
+          <div style="font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #ff3d8b; margin-bottom: 14px">Which house, if you know</div>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 26px">
+            <sc-for list="{{ houses }}" as="h" hint-placeholder-count="6">
+              <button onClick="{{ h.pick }}" style="cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 13px; min-height: 40px; border: 1px solid #2a2724; background: {{ h.bg }}; color: {{ h.fg }}">{{ h.label }}</button>
+            </sc-for>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: #2a2724; border: 1px solid #2a2724">
+            <label style="display: block; background: #171514; padding: 14px 16px">
+              <span style="display: block; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.5); margin-bottom: 6px">Roughly when</span>
+              <input placeholder="Second week of February" style="width: 100%; border: 0; background: none; outline: none; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #f2efe8">
+            </label>
+            <label style="display: block; background: #171514; padding: 14px 16px">
+              <span style="display: block; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.5); margin-bottom: 6px">How many nights</span>
+              <input placeholder="Four or five" style="width: 100%; border: 0; background: none; outline: none; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #f2efe8">
+            </label>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 16px; border: 1px solid #2a2724; border-top: 0; background: #171514">
+            <span style="font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.5); margin-right: auto">How many of you</span>
+            <button onClick="{{ fewer }}" style="all: unset; cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border: 1px solid #2a2724; font-size: 15px" style-hover="border-color: #c8f052; color: #c8f052">−</button>
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 19px; min-width: 24px; text-align: center">{{ party }}</span>
+            <button onClick="{{ more }}" style="all: unset; cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border: 1px solid #2a2724; font-size: 15px" style-hover="border-color: #c8f052; color: #c8f052">+</button>
+          </div>
+
+          <div style="display: grid; gap: 1px; background: #2a2724; border: 1px solid #2a2724; border-top: 0">
+            <label style="display: block; background: #171514; padding: 14px 16px">
+              <span style="display: block; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.5); margin-bottom: 6px">Your name</span>
+              <input placeholder="Who we're writing back to" style="width: 100%; border: 0; background: none; outline: none; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #f2efe8">
+            </label>
+            <label style="display: block; background: #171514; padding: 14px 16px">
+              <span style="display: block; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.5); margin-bottom: 6px">Email</span>
+              <input placeholder="you@email.com" style="width: 100%; border: 0; background: none; outline: none; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #f2efe8">
+            </label>
+            <label style="display: block; background: #171514; padding: 14px 16px">
+              <span style="display: block; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.5); margin-bottom: 6px">Tell us about the trip</span>
+              <textarea placeholder="Who's coming, what you're celebrating, what you'd hate. The more specific, the better the answer." rows="4" style="width: 100%; border: 0; background: none; outline: none; resize: vertical; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.7; color: #f2efe8"></textarea>
+            </label>
+          </div>
+
+          <button onClick="{{ send }}" style="width: 100%; border: 0; cursor: pointer; background: #c8f052; color: #0f0e0d; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; padding: 18px; min-height: 52px; text-align: left; margin-top: 22px" style-hover="background: #ff3d8b">Send it →</button>
+          <p style="font-size: 11px; line-height: 1.7; color: rgba(242,239,232,0.5); margin: 12px 0 0; max-width: 48ch">No deposit at this stage. If the dates are free we'll send a hold link, and the same 30 / 70 split applies.</p>
+        </div>
+      </sc-if>
+    </div>
+
+    <aside style="display: grid; gap: clamp(10px, 1.4vw, 18px)">
+      <div style="border: 1px solid #2a2724; background: #171514; padding: 18px">
+        <div style="font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #c8f052; margin-bottom: 12px">What we actually do</div>
+        <div style="display: grid; gap: 12px">
+          <div style="display: flex; gap: 12px">
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 16px; color: rgba(242,239,232,0.35); min-width: 22px">01</span>
+            <span style="font-size: 12px; line-height: 1.7; color: rgba(242,239,232,0.75)">Hold the house. Eight are owner-held, so this is a phone call, not a form.</span>
+          </div>
+          <div style="display: flex; gap: 12px">
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 16px; color: rgba(242,239,232,0.35); min-width: 22px">02</span>
+            <span style="font-size: 12px; line-height: 1.7; color: rgba(242,239,232,0.75)">Book the two meals that need booking, and tell you which nights to eat at home.</span>
+          </div>
+          <div style="display: flex; gap: 12px">
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 16px; color: rgba(242,239,232,0.35); min-width: 22px">03</span>
+            <span style="font-size: 12px; line-height: 1.7; color: rgba(242,239,232,0.75)">Put a car and a driver on the road book if you want to drive it properly.</span>
+          </div>
+          <div style="display: flex; gap: 12px">
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 16px; color: rgba(242,239,232,0.35); min-width: 22px">04</span>
+            <span style="font-size: 12px; line-height: 1.7; color: rgba(242,239,232,0.75)">Say no. If the week doesn't suit the house, we'll tell you and suggest another.</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="border: 1px solid #2a2724; background: #171514; overflow: hidden">
+        <div style="aspect-ratio: 3/2; overflow: hidden">
+          <img src="https://res.cloudinary.com/dhok4m7m3/image/upload/q_auto/f_auto/v1781431125/IMG_0124_crwztm.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover">
+        </div>
+        <div style="padding: 16px">
+          <div style="font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #ff3d8b; margin-bottom: 8px">The honest bit</div>
+          <p style="font-size: 12px; line-height: 1.75; color: rgba(242,239,232,0.7); margin: 0">We take nothing from you for this and nothing extra from the houses. It exists because the collection is small enough that we can still answer every message ourselves.</p>
+        </div>
+      </div>
+    </aside>
+
+  </section>
+
+  <footer style="padding: clamp(20px, 3vw, 36px) clamp(14px, 3vw, 40px); border-top: 1px solid #2a2724">
+    <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 11vw, 150px); line-height: 0.82; letter-spacing: -0.05em; text-transform: uppercase">The Salt Guide</div>
+    <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: baseline; padding-top: 16px; margin-top: 16px; border-top: 1px solid #2a2724; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(242,239,232,0.5)">
+      <span style="margin-right: auto">© 2026 · Stays, tables and roads</span>
+      <a href="#" style="color: rgba(242,239,232,0.5)">Instagram</a>
+      <a href="#" style="color: rgba(242,239,232,0.5)">Newsletter</a>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+const INTENTS = [
+  { id: "house", label: "A house on set dates" },
+  { id: "week", label: "Help planning a week" },
+  { id: "drive", label: "One of the drives" },
+  { id: "group", label: "A group or a celebration" },
+];
+
+const HOUSES = [
+  "Not sure yet", "Vaddo House", "Chapel House", "The Kihim House",
+  "Awas Farmhouse", "Mandwa Beach House", "Cusrow Apartment",
+  "The Plantation House", "Cardamom Bungalow",
+];
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { intent: "house", house: "Not sure yet", party: 4, sent: false };
+  }
+
+  renderVals() {
+    const st = this.state || {};
+    const intent = st.intent || "house";
+    const house = st.house || "Not sure yet";
+    const party = st.party || 4;
+    const sent = !!st.sent;
+    const intentLabel = (INTENTS.find(i => i.id === intent) || INTENTS[0]).label.toLowerCase();
+
+    return {
+      sent, open: !sent,
+      party,
+      summary: house === "Not sure yet"
+        ? "Your note about " + intentLabel + " for " + party + (party === 1 ? " person" : " people") + " is with us."
+        : house + " for " + party + (party === 1 ? " person" : " people") + " — your note is with us.",
+      intents: INTENTS.map(i => ({
+        label: i.label,
+        pick: () => this.setState({ intent: i.id }),
+        bg: intent === i.id ? "#c8f052" : "transparent",
+        fg: intent === i.id ? "#0f0e0d" : "rgba(242,239,232,0.72)",
+      })),
+      houses: HOUSES.map(h => ({
+        label: h,
+        pick: () => this.setState({ house: h }),
+        bg: house === h ? "#f2efe8" : "transparent",
+        fg: house === h ? "#0f0e0d" : "rgba(242,239,232,0.6)",
+      })),
+      more: () => this.setState(s => ({ party: Math.min(16, (s.party || 4) + 1) })),
+      fewer: () => this.setState(s => ({ party: Math.max(1, (s.party || 4) - 1) })),
+      send: () => this.setState({ sent: true }),
+      reset: () => this.setState({ sent: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>

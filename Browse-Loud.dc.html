@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  body { margin: 0; background: #0f0e0d; }
+  a { color: #f2efe8; text-decoration: none; }
+  a:hover { color: #c8f052; }
+  ::selection { background: #c8f052; color: #0f0e0d; }
+</style>
+</helmet>
+
+<div style="background: #0f0e0d; color: #f2efe8; font-family: 'IBM Plex Mono', monospace; min-height: 100vh; overflow-x: hidden">
+
+  <header style="position: sticky; top: 0; z-index: 60; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding: 12px clamp(14px, 3vw, 40px); background: #0f0e0d; border-bottom: 1px solid #2a2724">
+    <a href="Home-Loud.dc.html" style="display: flex; align-items: center; gap: 8px; margin-right: auto">
+      <span style="background: #c8f052; color: #0f0e0d; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: -0.04em; padding: 3px 7px 4px; text-transform: uppercase">Salt</span>
+      <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: -0.03em; text-transform: uppercase">The Salt Guide</span>
+    </a>
+    <nav style="display: flex; gap: 18px; flex-wrap: wrap; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase">
+      <a href="#" style="color: #c8f052">Stays</a>
+      <a href="Places-Loud.dc.html">Places</a>
+      <a href="Journeys.html">Journeys</a>
+      <a href="Home-Loud.dc.html#guide">Guide</a>
+    </nav>
+    <a href="Concierge-Loud.dc.html" style="background: #c8f052; color: #0f0e0d; padding: 9px 14px; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase" style-hover="background: #ff3d8b; color: #f2efe8">Concierge</a>
+  </header>
+
+  <section style="padding: clamp(24px, 4vw, 56px) clamp(14px, 3vw, 40px) clamp(16px, 2.4vw, 28px)">
+    <div style="font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #ff3d8b; margin-bottom: 12px">The collection</div>
+    <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(44px, 11vw, 160px); line-height: 0.82; letter-spacing: -0.05em; text-transform: uppercase; margin: 0 0 16px">Fourteen<br>houses<span style="color: #c8f052">.</span></h1>
+    <p style="font-size: clamp(12px, 1.2vw, 15px); line-height: 1.7; color: rgba(242,239,232,0.62); max-width: 52ch; margin: 0; text-wrap: pretty">Every one visited, every one we would put our own family in. Filter by place, by shape of house, or by how many of you there are.</p>
+  </section>
+
+  <section style="position: sticky; top: 53px; z-index: 50; background: #0f0e0d; border-top: 1px solid #2a2724; border-bottom: 1px solid #2a2724; padding: 14px clamp(14px, 3vw, 40px)">
+    <div style="display: flex; gap: 26px; flex-wrap: wrap; align-items: flex-start">
+
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(242,239,232,0.4)">Where</span>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap">
+          <sc-for list="{{ destOptions }}" as="opt" hint-placeholder-count="5">
+            <button onClick="{{ opt.pick }}" style="cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 9px 12px; min-height: 36px; border: 1px solid #2a2724; background: {{ opt.bg }}; color: {{ opt.fg }}">{{ opt.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(242,239,232,0.4)">Shape of house</span>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap">
+          <sc-for list="{{ typeOptions }}" as="opt" hint-placeholder-count="5">
+            <button onClick="{{ opt.pick }}" style="cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 9px 12px; min-height: 36px; border: 1px solid #2a2724; background: {{ opt.bg }}; color: {{ opt.fg }}">{{ opt.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(242,239,232,0.4)">Sleeps at least</span>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap">
+          <sc-for list="{{ sleepsOptions }}" as="opt" hint-placeholder-count="5">
+            <button onClick="{{ opt.pick }}" style="cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 9px 12px; min-height: 36px; border: 1px solid #2a2724; background: {{ opt.bg }}; color: {{ opt.fg }}">{{ opt.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(242,239,232,0.4)">Booking</span>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap">
+          <sc-for list="{{ bookOptions }}" as="opt" hint-placeholder-count="3">
+            <button onClick="{{ opt.pick }}" style="cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 9px 12px; min-height: 36px; border: 1px solid #2a2724; background: {{ opt.bg }}; color: {{ opt.fg }}">{{ opt.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 18px clamp(14px, 3vw, 40px) 0">
+    <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.03em; text-transform: uppercase">{{ countLabel }}</div>
+    <div style="flex: 1; min-width: 30px; height: 1px; background: #2a2724"></div>
+    <div style="display: flex; gap: 4px; flex-wrap: wrap; align-items: center">
+      <span style="font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(242,239,232,0.4); margin-right: 6px">Order</span>
+      <sc-for list="{{ sortOptions }}" as="opt" hint-placeholder-count="3">
+        <button onClick="{{ opt.pick }}" style="cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 10px; min-height: 36px; border: 0; background: none; color: {{ opt.fg }}; border-bottom: 2px solid {{ opt.rule }}">{{ opt.label }}</button>
+      </sc-for>
+      <button onClick="{{ clearAll }}" style="cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 0 8px 14px; min-height: 36px; border: 0; background: none; color: #ff3d8b">Clear</button>
+    </div>
+  </section>
+
+  <section style="padding: clamp(18px, 2.6vw, 32px) clamp(14px, 3vw, 40px) clamp(36px, 5vw, 80px)">
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: clamp(10px, 1.4vw, 20px)">
+      <sc-for list="{{ results }}" as="p" hint-placeholder-count="6">
+        <a href="Property-Loud.dc.html" style="display: block; cursor: pointer; background: #171514; color: #f2efe8" style-hover="background: #1f1c1a">
+          <div style="position: relative; aspect-ratio: 1; overflow: hidden; background: #1a1817">
+            <img src="{{ p.photo }}" alt="{{ p.name }}" style="width: 100%; height: 100%; object-fit: cover">
+            <span style="position: absolute; top: 0; left: 0; background: {{ p.badgeBg }}; color: #0f0e0d; font-size: 9px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; padding: 7px 11px">{{ p.booking }}</span>
+          </div>
+          <div style="padding: 16px 16px 20px">
+            <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(242,239,232,0.5); margin-bottom: 8px">
+              <span>{{ p.place }}</span><span>{{ p.sleeps }}</span>
+            </div>
+            <h3 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(22px, 2.2vw, 32px); line-height: 0.94; letter-spacing: -0.04em; text-transform: uppercase; margin: 0 0 10px">{{ p.name }}</h3>
+            <p style="font-size: 12px; line-height: 1.75; color: rgba(242,239,232,0.62); margin: 0 0 14px; text-wrap: pretty">{{ p.note }}</p>
+            <div style="display: flex; align-items: baseline; gap: 8px; padding-top: 12px; border-top: 1px solid #2a2724">
+              <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; color: #c8f052; letter-spacing: -0.03em">{{ p.price }}</span>
+              <span style="font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(242,239,232,0.45)">{{ p.priceNote }}</span>
+            </div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+      <div style="padding: 48px 0; border-top: 1px solid #2a2724; max-width: 46ch">
+        <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(28px, 4vw, 52px); line-height: 0.9; letter-spacing: -0.04em; text-transform: uppercase; margin-bottom: 12px">Nothing here<span style="color: #ff3d8b">.</span></div>
+        <p style="font-size: 12px; line-height: 1.75; color: rgba(242,239,232,0.6); margin: 0 0 22px">Fourteen houses is a small collection on purpose. Loosen a filter, or tell the concierge what you're after and we'll go and find it.</p>
+        <a href="Concierge-Loud.dc.html" style="display: inline-block; background: #c8f052; color: #0f0e0d; padding: 14px 20px; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase">Ask the concierge →</a>
+      </div>
+    </sc-if>
+  </section>
+
+  <footer style="padding: clamp(20px, 3vw, 36px) clamp(14px, 3vw, 40px); border-top: 1px solid #2a2724">
+    <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 11vw, 150px); line-height: 0.82; letter-spacing: -0.05em; text-transform: uppercase">The Salt Guide</div>
+    <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: baseline; padding-top: 16px; margin-top: 16px; border-top: 1px solid #2a2724; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(242,239,232,0.45)">
+      <span style="margin-right: auto">© 2026 · Stays, tables and roads</span>
+      <a href="#" style="color: rgba(242,239,232,0.45)">Instagram</a>
+      <a href="#" style="color: rgba(242,239,232,0.45)">Newsletter</a>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+const CDN = "https://res.cloudinary.com/dhok4m7m3/image/upload/q_auto/f_auto";
+
+const HOUSES = [
+  { name:"Casa Palmeira", place:"Assagao, Goa", dest:"Goa", type:"Villa", sleeps:8, price:32000, booking:"Instant book", unit:"whole house", photo:`${CDN}/v1781430956/image_lgznwz.jpg`,
+    note:"Portuguese-era, behind a laterite wall, restored with almost nothing added. Four rooms around a courtyard and a verandah for the afternoon." },
+  { name:"Vaddo House", place:"Siolim, Goa", dest:"Goa", type:"Villa", sleeps:6, price:26000, booking:"By request", unit:"whole house", photo:`${CDN}/v1781431007/image_i3krkr.jpg`,
+    note:"Three rooms above a walled garden five minutes from the river. The owner's own house until last year, which is why the kitchen is the best in the collection." },
+  { name:"Sunset Wing", place:"Anjuna, Goa", dest:"Goa", type:"Apartment", sleeps:4, price:14000, booking:"Instant book", unit:"whole flat", photo:`${CDN}/v1781431115/IMG_0123_fwcmpj.jpg`,
+    note:"Top floor of a small building on the quiet side of Anjuna. Two rooms, a long terrace, four minutes down to the rocks." },
+  { name:"Tiracol Rooms", place:"Tiracol, Goa", dest:"Goa", type:"Hotel", sleeps:2, price:11000, booking:"Instant book", unit:"per room", photo:`${CDN}/v1781431091/image_xsl88e.jpg`,
+    note:"Seven rooms inside a fort at the northern tip of the state, reached by ferry. Nothing to do here, which is the point." },
+  { name:"Chapel House", place:"Aldona, Goa", dest:"Goa", type:"Villa", sleeps:10, price:48000, booking:"By request", unit:"whole house", photo:`${CDN}/v1781431041/image_oj7ux2.jpg`,
+    note:"Five bedrooms, a chapel in the garden and a table that seats fourteen. Built for a family Christmas and still best used that way." },
+  { name:"The Kihim House", place:"Kihim, Alibag", dest:"Alibag", type:"Villa", sleeps:6, price:24000, booking:"By request", unit:"whole house", photo:`${CDN}/v1781431067/IMG_0120_yni7kn.jpg`,
+    note:"Twelve minutes from the jetty and then nothing but casuarina. Three rooms, an outdoor bath, Konkani fish on request. Two nights minimum." },
+  { name:"Awas Farmhouse", place:"Awas, Alibag", dest:"Alibag", type:"Villa", sleeps:8, price:28000, booking:"By request", unit:"whole house", photo:`${CDN}/v1781430996/IMG_0116_vrbu3q.jpg`,
+    note:"A working mango farm with four rooms in the old house. Breakfast is whatever is ripe. The beach is ten minutes through the trees." },
+  { name:"Nagaon Cabana", place:"Nagaon, Alibag", dest:"Alibag", type:"Apartment", sleeps:4, price:16000, booking:"Instant book", unit:"whole cabana", photo:`${CDN}/v1780744557/IMG_0065_nmuuo2.jpg`,
+    note:"One room, one deck, one outdoor shower, twenty metres of sand. The smallest thing we list and the one we send couples to." },
+  { name:"Mandwa Beach House", place:"Mandwa, Alibag", dest:"Alibag", type:"Villa", sleeps:10, price:52000, booking:"By request", unit:"whole house", photo:`${CDN}/v1781430968/IMG_0113_zj5v7g.jpg`,
+    note:"Five rooms facing the water, a pool on the sand line, and the fast ferry from Bombay drops you fifteen minutes away." },
+  { name:"Wodehouse Flat", place:"Colaba, Bombay", dest:"Bombay", type:"Apartment", sleeps:4, price:18000, booking:"Instant book", unit:"whole flat", photo:`${CDN}/v1781431076/image_vqhyj7.jpg`,
+    note:"First floor of a 1930s building off Wodehouse Road. Teak floors, two bedrooms, a balcony that catches the sea breeze at six." },
+  { name:"Sassoon Studio", place:"Colaba, Bombay", dest:"Bombay", type:"Apartment", sleeps:2, price:9500, booking:"Instant book", unit:"whole studio", photo:`${CDN}/v1781430981/IMG_0114_wpsgu2.jpg`,
+    note:"One room and a kitchen behind the docks, arranged by an architect who lives upstairs. Everything in the Colaba pages is walkable." },
+  { name:"Cusrow Apartment", place:"Colaba, Bombay", dest:"Bombay", type:"Apartment", sleeps:6, price:28000, booking:"By request", unit:"whole flat", photo:`${CDN}/v1780744556/IMG_0064_kfqr1e.jpg`,
+    note:"Three bedrooms in a garden compound, quiet enough to forget the city is outside. Cook and housekeeper included, which changes the week." },
+  { name:"The Plantation House", place:"Wayanad, Kerala", dest:"Kerala", type:"Plantation house", sleeps:10, price:46000, booking:"By request", unit:"whole estate", photo:`${CDN}/v1781431125/IMG_0124_crwztm.jpg`,
+    note:"A coffee estate bungalow at 900 metres, five rooms, a fire lit every evening from November to February. The walk before breakfast is the reason to come." },
+  { name:"Cardamom Bungalow", place:"Thekkady, Kerala", dest:"Kerala", type:"Plantation house", sleeps:6, price:30000, booking:"By request", unit:"whole bungalow", photo:`${CDN}/v1781431058/IMG_0119_sgvmyy.jpg`,
+    note:"Three rooms on a cardamom slope, mist until nine most mornings. The cook's Syrian Christian breakfast is worth the drive on its own." },
+];
+
+const DESTS = ["All", "Goa", "Alibag", "Bombay", "Kerala"];
+const TYPES = ["All", "Villa", "Apartment", "Hotel", "Plantation house"];
+const SLEEPS = [
+  { label: "Any", v: 0 }, { label: "2+", v: 2 }, { label: "4+", v: 4 }, { label: "6+", v: 6 }, { label: "8+", v: 8 },
+];
+const BOOKS = ["All", "Instant book", "By request"];
+const SORTS = [
+  { label: "Featured", v: "featured" }, { label: "Price", v: "price" }, { label: "Size", v: "sleeps" },
+];
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { dest: "All", type: "All", sleeps: 0, book: "All", sort: "featured" };
+  }
+
+  opts(list, key, keyOf, labelOf) {
+    return list.map(o => {
+      const v = keyOf(o);
+      const st = this.state || {};
+      const cur = key === "sleeps" ? (st.sleeps || 0) : (st[key] || "All");
+      const active = cur === v;
+      return {
+        label: labelOf(o),
+        pick: () => this.setState({ [key]: v }),
+        bg: active ? "#c8f052" : "transparent",
+        fg: active ? "#0f0e0d" : "rgba(242,239,232,0.7)",
+      };
+    });
+  }
+
+  renderVals() {
+    const st = this.state || {};
+    const s = {
+      dest: st.dest || "All", type: st.type || "All",
+      sleeps: st.sleeps || 0, book: st.book || "All", sort: st.sort || "featured",
+    };
+    let results = HOUSES.filter(h =>
+      (s.dest === "All" || h.dest === s.dest) &&
+      (s.type === "All" || h.type === s.type) &&
+      (h.sleeps >= s.sleeps) &&
+      (s.book === "All" || h.booking === s.book)
+    );
+    if (s.sort === "price") results = results.slice().sort((a, b) => a.price - b.price);
+    if (s.sort === "sleeps") results = results.slice().sort((a, b) => b.sleeps - a.sleeps);
+
+    const fmt = n => "₹" + n.toLocaleString("en-IN");
+
+    return {
+      destOptions: this.opts(DESTS, "dest", d => d, d => d === "All" ? "Anywhere" : d),
+      typeOptions: this.opts(TYPES, "type", t => t, t => t === "All" ? "Any" : t),
+      sleepsOptions: this.opts(SLEEPS, "sleeps", o => o.v, o => o.label),
+      bookOptions: this.opts(BOOKS, "book", b => b, b => b === "All" ? "Either" : b),
+      sortOptions: SORTS.map(o => ({
+        label: o.label,
+        pick: () => this.setState({ sort: o.v }),
+        fg: s.sort === o.v ? "#f2efe8" : "rgba(242,239,232,0.45)",
+        rule: s.sort === o.v ? "#c8f052" : "transparent",
+      })),
+      clearAll: () => this.setState({ dest: "All", type: "All", sleeps: 0, book: "All", sort: "featured" }),
+      countLabel: results.length === HOUSES.length
+        ? "All fourteen"
+        : results.length + (results.length === 1 ? " house" : " houses"),
+      empty: results.length === 0,
+      results: results.map(h => ({
+        name: h.name,
+        photo: h.photo,
+        booking: h.booking,
+        badgeBg: h.booking === "Instant book" ? "#c8f052" : "#ff3d8b",
+        place: h.place,
+        sleeps: "Sleeps " + h.sleeps,
+        note: h.note,
+        price: fmt(h.price),
+        priceNote: "/ night · " + h.unit,
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

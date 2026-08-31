@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  body { margin: 0; background: #0f0e0d; }
+  a { color: #f2efe8; text-decoration: none; }
+  a:hover { color: #c8f052; }
+  ::selection { background: #c8f052; color: #0f0e0d; }
+  input::placeholder { color: rgba(242,239,232,0.3); }
+</style>
+</helmet>
+
+<div style="background: #0f0e0d; color: #f2efe8; font-family: 'IBM Plex Mono', monospace; min-height: 100vh; overflow-x: hidden">
+
+  <header style="position: sticky; top: 0; z-index: 60; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding: 12px clamp(14px, 3vw, 40px); background: #0f0e0d; border-bottom: 1px solid #2a2724">
+    <a href="Home-Loud.dc.html" style="display: flex; align-items: center; gap: 8px; margin-right: auto">
+      <span style="background: #c8f052; color: #0f0e0d; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: -0.04em; padding: 3px 7px 4px; text-transform: uppercase">Salt</span>
+      <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: -0.03em; text-transform: uppercase">The Salt Guide</span>
+    </a>
+    <a href="Property-Loud.dc.html" style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(242,239,232,0.5)">← Back to the house</a>
+  </header>
+
+  <div style="display: flex; gap: 0; border-bottom: 1px solid #2a2724">
+    <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+      <div style="flex: 1; padding: 14px clamp(10px, 1.6vw, 20px); border-right: 1px solid #2a2724; background: {{ s.bg }}; color: {{ s.fg }}">
+        <div style="font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.7">{{ s.no }}</div>
+        <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(12px, 1.3vw, 16px); letter-spacing: -0.02em; text-transform: uppercase; margin-top: 3px">{{ s.label }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: clamp(20px, 3vw, 48px); padding: clamp(22px, 3.4vw, 48px) clamp(14px, 3vw, 40px) clamp(36px, 5vw, 80px); align-items: start">
+
+    <div>
+
+      <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <div style="font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #ff3d8b; margin-bottom: 12px">Step one</div>
+          <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 5.6vw, 76px); line-height: 0.86; letter-spacing: -0.05em; text-transform: uppercase; margin: 0 0 22px">Which nights?</h1>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: #2a2724; border: 1px solid #2a2724">
+            <label style="display: block; background: #171514; padding: 14px 16px">
+              <span style="display: block; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.45); margin-bottom: 6px">Arrive</span>
+              <input value="14 November 2026" style="width: 100%; border: 0; background: none; outline: none; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #f2efe8">
+            </label>
+            <label style="display: block; background: #171514; padding: 14px 16px">
+              <span style="display: block; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.45); margin-bottom: 6px">Leave</span>
+              <input value="{{ leaveDate }}" style="width: 100%; border: 0; background: none; outline: none; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #f2efe8">
+            </label>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 16px; border: 1px solid #2a2724; border-top: 0; background: #171514">
+            <span style="font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.45); margin-right: auto">Nights</span>
+            <button onClick="{{ fewerNights }}" style="all: unset; cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border: 1px solid #2a2724; font-size: 15px" style-hover="border-color: #c8f052; color: #c8f052">−</button>
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 19px; min-width: 24px; text-align: center">{{ nights }}</span>
+            <button onClick="{{ moreNights }}" style="all: unset; cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border: 1px solid #2a2724; font-size: 15px" style-hover="border-color: #c8f052; color: #c8f052">+</button>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 16px; border: 1px solid #2a2724; border-top: 0; background: #171514">
+            <span style="font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.45); margin-right: auto">Guests · sleeps 8</span>
+            <button onClick="{{ fewerGuests }}" style="all: unset; cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border: 1px solid #2a2724; font-size: 15px" style-hover="border-color: #c8f052; color: #c8f052">−</button>
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 19px; min-width: 24px; text-align: center">{{ guests }}</span>
+            <button onClick="{{ moreGuests }}" style="all: unset; cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border: 1px solid #2a2724; font-size: 15px" style-hover="border-color: #c8f052; color: #c8f052">+</button>
+          </div>
+
+          <div style="margin-top: 22px; padding: 16px; border-left: 2px solid #c8f052; background: #171514">
+            <div style="font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #c8f052; margin-bottom: 8px">Add the cook</div>
+            <p style="font-size: 12px; line-height: 1.7; color: rgba(242,239,232,0.62); margin: 0 0 12px">Breakfast is included. Lunch and dinner are cooked on request and charged at cost — say yes now and she'll shop before you arrive.</p>
+            <button onClick="{{ toggleCook }}" style="all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; padding: 11px 14px; min-height: 40px; border: 1px solid #2a2724; background: {{ cookBg }}; color: {{ cookFg }}">{{ cookLabel }}</button>
+          </div>
+
+          <button onClick="{{ next }}" style="width: 100%; border: 0; cursor: pointer; background: #c8f052; color: #0f0e0d; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; padding: 18px; min-height: 52px; text-align: left; margin-top: 22px" style-hover="background: #ff3d8b">Continue to your details →</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <div style="font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #ff3d8b; margin-bottom: 12px">Step two</div>
+          <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 5.6vw, 76px); line-height: 0.86; letter-spacing: -0.05em; text-transform: uppercase; margin: 0 0 22px">Who's coming?</h1>
+
+          <div style="display: grid; gap: 1px; background: #2a2724; border: 1px solid #2a2724">
+            <label style="display: block; background: #171514; padding: 14px 16px">
+              <span style="display: block; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.45); margin-bottom: 6px">Full name</span>
+              <input placeholder="As on your passport" style="width: 100%; border: 0; background: none; outline: none; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #f2efe8">
+            </label>
+            <label style="display: block; background: #171514; padding: 14px 16px">
+              <span style="display: block; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.45); margin-bottom: 6px">Email</span>
+              <input placeholder="you@email.com" style="width: 100%; border: 0; background: none; outline: none; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #f2efe8">
+            </label>
+            <label style="display: block; background: #171514; padding: 14px 16px">
+              <span style="display: block; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.45); margin-bottom: 6px">Phone · with country code</span>
+              <input placeholder="+91" style="width: 100%; border: 0; background: none; outline: none; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #f2efe8">
+            </label>
+            <label style="display: block; background: #171514; padding: 14px 16px">
+              <span style="display: block; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.45); margin-bottom: 6px">Anything we should know</span>
+              <input placeholder="Arrival time, a birthday, a bad back, the driver's name" style="width: 100%; border: 0; background: none; outline: none; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #f2efe8">
+            </label>
+          </div>
+
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 22px">
+            <button onClick="{{ next }}" style="flex: 1 1 220px; border: 0; cursor: pointer; background: #c8f052; color: #0f0e0d; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; padding: 18px; min-height: 52px; text-align: left" style-hover="background: #ff3d8b">Continue to payment →</button>
+            <button onClick="{{ back }}" style="border: 1px solid #2a2724; cursor: pointer; background: none; color: rgba(242,239,232,0.7); font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; padding: 18px 20px; min-height: 52px">Back</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <div style="font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #ff3d8b; margin-bottom: 12px">Step three</div>
+          <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 5.6vw, 76px); line-height: 0.86; letter-spacing: -0.05em; text-transform: uppercase; margin: 0 0 14px">Hold the house.</h1>
+          <p style="font-size: 13px; line-height: 1.8; color: rgba(242,239,232,0.62); margin: 0 0 22px; max-width: 46ch; text-wrap: pretty">{{ balanceCopy }}</p>
+
+          <div style="display: grid; gap: 1px; background: #2a2724; border: 1px solid #2a2724; margin-bottom: 18px">
+            <div style="background: #171514; padding: 16px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline">
+              <div>
+                <div style="font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #c8f052">Now · deposit 30%</div>
+                <div style="font-size: 11px; color: rgba(242,239,232,0.45); margin-top: 4px">Charged today, confirms the booking</div>
+              </div>
+              <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.03em; color: #c8f052">{{ deposit }}</span>
+            </div>
+            <div style="background: #171514; padding: 16px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline">
+              <div>
+                <div style="font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(242,239,232,0.8)">{{ balanceDue }}</div>
+                <div style="font-size: 11px; color: rgba(242,239,232,0.45); margin-top: 4px">Same card, automatically</div>
+              </div>
+              <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.03em">{{ balance }}</span>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: #2a2724; border: 1px solid #2a2724">
+            <label style="display: block; background: #171514; padding: 14px 16px; grid-column: 1 / -1">
+              <span style="display: block; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.45); margin-bottom: 6px">Card number</span>
+              <input placeholder="0000 0000 0000 0000" style="width: 100%; border: 0; background: none; outline: none; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #f2efe8">
+            </label>
+            <label style="display: block; background: #171514; padding: 14px 16px">
+              <span style="display: block; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.45); margin-bottom: 6px">Expiry</span>
+              <input placeholder="MM / YY" style="width: 100%; border: 0; background: none; outline: none; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #f2efe8">
+            </label>
+            <label style="display: block; background: #171514; padding: 14px 16px">
+              <span style="display: block; font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(242,239,232,0.45); margin-bottom: 6px">CVC</span>
+              <input placeholder="123" style="width: 100%; border: 0; background: none; outline: none; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #f2efe8">
+            </label>
+          </div>
+
+          <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 14px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(242,239,232,0.58)">
+            <span>UPI · Cards · Netbanking</span>
+            <span style="border: 1px solid #2a2724; padding: 5px 9px">Razorpay</span>
+          </div>
+
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 22px">
+            <button onClick="{{ next }}" style="flex: 1 1 240px; border: 0; cursor: pointer; background: #c8f052; color: #0f0e0d; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; padding: 18px; min-height: 52px; text-align: left" style-hover="background: #ff3d8b">Pay {{ deposit }} and confirm →</button>
+            <button onClick="{{ back }}" style="border: 1px solid #2a2724; cursor: pointer; background: none; color: rgba(242,239,232,0.7); font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; padding: 18px 20px; min-height: 52px">Back</button>
+          </div>
+          <p style="font-size: 11px; line-height: 1.7; color: rgba(242,239,232,0.58); margin: 12px 0 0; max-width: 48ch">{{ cancelNote }}</p>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <div style="font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #c8f052; margin-bottom: 12px">Confirmed · SG-2611-0148</div>
+          <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 5.6vw, 76px); line-height: 0.86; letter-spacing: -0.05em; text-transform: uppercase; margin: 0 0 16px">The house<br>is yours<span style="color: #c8f052">.</span></h1>
+          <p style="font-size: 14px; line-height: 1.8; color: rgba(242,239,232,0.7); margin: 0 0 24px; max-width: 46ch; text-wrap: pretty">{{ nightsSentence }} at Casa Palmeira, 14 November. The deposit is paid. Your confirmation and the directions are in your inbox — the last kilometre is a lane, so read them before you set off.</p>
+
+          <div style="display: grid; gap: 1px; background: #2a2724; border: 1px solid #2a2724; margin-bottom: 22px">
+            <div style="background: #171514; padding: 14px 16px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+              <span style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(242,239,232,0.45)">Paid today</span>
+              <span style="font-size: 13px; color: #c8f052">{{ deposit }}</span>
+            </div>
+            <div style="background: #171514; padding: 14px 16px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+              <span style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(242,239,232,0.45)">{{ dueLine }}</span>
+              <span style="font-size: 13px">{{ balance }}</span>
+            </div>
+          </div>
+
+          <div style="font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #ff3d8b; margin-bottom: 14px">While you're here</div>
+          <div style="display: grid; gap: 8px">
+            <a href="Home-Loud.dc.html#guide" style="display: flex; justify-content: space-between; gap: 12px; align-items: center; border: 1px solid #2a2724; padding: 16px" style-hover="border-color: #c8f052">
+              <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -0.03em; text-transform: uppercase">Book the second evening out</span>
+              <span style="color: #c8f052">→</span>
+            </a>
+            <a href="Journeys.html" style="display: flex; justify-content: space-between; gap: 12px; align-items: center; border: 1px solid #2a2724; padding: 16px" style-hover="border-color: #c8f052">
+              <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -0.03em; text-transform: uppercase">Take a road book with you</span>
+              <span style="color: #c8f052">→</span>
+            </a>
+          </div>
+
+          <button onClick="{{ restart }}" style="margin-top: 24px; border: 1px solid #2a2724; cursor: pointer; background: none; color: rgba(242,239,232,0.5); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; padding: 14px 18px; min-height: 44px">Run it again</button>
+        </div>
+      </sc-if>
+
+    </div>
+
+    <aside style="position: sticky; top: 68px; border: 1px solid #2a2724; background: #171514">
+      <div style="aspect-ratio: 3/2; overflow: hidden">
+        <img src="https://res.cloudinary.com/dhok4m7m3/image/upload/q_auto/f_auto/v1781430956/image_lgznwz.jpg" alt="Casa Palmeira" style="width: 100%; height: 100%; object-fit: cover">
+      </div>
+      <div style="padding: 16px 16px 0">
+        <div style="font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #c8f052; margin-bottom: 6px">Assagao, Goa · Instant book</div>
+        <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(22px, 2.2vw, 30px); line-height: 0.94; letter-spacing: -0.04em; text-transform: uppercase">Casa Palmeira</div>
+        <div style="font-size: 11px; color: rgba(242,239,232,0.5); margin-top: 8px">{{ stayLine }}</div>
+      </div>
+      <div style="padding: 16px; margin-top: 8px; border-top: 1px solid #2a2724; display: grid; gap: 8px">
+        <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 12px; color: rgba(242,239,232,0.62)">
+          <span>{{ rateLine }}</span><span>{{ subtotal }}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 12px; color: rgba(242,239,232,0.62)">
+          <span>Housekeeping</span><span>₹4,000</span>
+        </div>
+        <sc-if value="{{ cook }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 12px; color: rgba(242,239,232,0.62)">
+            <span>Cook · at cost</span><span>{{ cookCost }}</span>
+          </div>
+        </sc-if>
+        <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 12px; color: rgba(242,239,232,0.62)">
+          <span>Taxes (12%)</span><span>{{ tax }}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 10px; align-items: baseline; padding-top: 12px; margin-top: 4px; border-top: 1px solid #2a2724">
+          <span style="font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase">Total</span>
+          <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; color: #c8f052; letter-spacing: -0.03em">{{ total }}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 11px; color: rgba(242,239,232,0.45)">
+          <span>Deposit now</span><span>{{ deposit }}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 10px; font-size: 11px; color: rgba(242,239,232,0.45)">
+          <span>{{ balanceRow }}</span><span>{{ balance }}</span>
+        </div>
+      </div>
+    </aside>
+
+  </section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+const RATE = 32000, CLEANING = 4000, COOK_PER_NIGHT = 3500, MIN_NIGHTS = 2, MAX_GUESTS = 8;
+const STEPS = [
+  { no: "01", label: "Nights" }, { no: "02", label: "Details" },
+  { no: "03", label: "Payment" }, { no: "04", label: "Confirmed" },
+];
+const ARRIVE = new Date(2026, 10, 14);
+const LONG = { day: "numeric", month: "long", year: "numeric" };
+const SHORT = { day: "numeric", month: "short" };
+const addDays = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { step: 0, nights: 3, guests: 4, cook: false };
+  }
+
+  renderVals() {
+    const st = this.state || {};
+    const step = st.step || 0;
+    const nights = st.nights || 3;
+    const guests = st.guests || 4;
+    const cook = !!st.cook;
+
+    const fmt = n => "₹" + Math.round(n).toLocaleString("en-IN");
+    const sub = RATE * nights;
+    const cookCost = cook ? COOK_PER_NIGHT * nights : 0;
+    const tax = (sub + CLEANING + cookCost) * 0.12;
+    const total = sub + CLEANING + cookCost + tax;
+    const leaveOn = addDays(ARRIVE, nights);
+    const balanceOn = addDays(ARRIVE, -14);
+    const balanceLong = balanceOn.toLocaleDateString("en-GB", { day: "numeric", month: "long" });
+
+    return {
+      steps: STEPS.map((s, i) => ({
+        no: s.no, label: s.label,
+        bg: i === step ? "#c8f052" : "#0f0e0d",
+        fg: i === step ? "#0f0e0d" : i < step ? "rgba(242,239,232,0.85)" : "rgba(242,239,232,0.55)",
+      })),
+      isStep1: step === 0, isStep2: step === 1, isStep3: step === 2, isDone: step === 3,
+      nights, guests, cook,
+      leaveDate: leaveOn.toLocaleDateString("en-GB", LONG),
+      arriveDate: ARRIVE.toLocaleDateString("en-GB", LONG),
+      balanceLong,
+      balanceDue: "Balance · " + balanceLong,
+      dueLine: "Due " + balanceLong,
+      cancelNote: "Free cancellation until " + balanceLong + " — the deposit comes back in full. After that the deposit is held and the balance is not charged.",
+      balanceCopy: "Thirty per cent now holds the dates. The balance comes off the same card fourteen days before you arrive, on " + balanceLong + ", and we'll email you the day before we take it.",
+      balanceRow: "Balance " + balanceOn.toLocaleDateString("en-GB", SHORT),
+      stayLine: nights + (nights === 1 ? " night" : " nights") + " · " + guests + (guests === 1 ? " guest" : " guests") + " · "
+        + ARRIVE.toLocaleDateString("en-GB", SHORT) + " – " + leaveOn.toLocaleDateString("en-GB", SHORT),
+      nightsSentence: nights + (nights === 1 ? " night" : " nights") + " for " + guests,
+      rateLine: fmt(RATE) + " × " + nights + (nights === 1 ? " night" : " nights"),
+      subtotal: fmt(sub),
+      cookCost: fmt(cookCost),
+      tax: fmt(tax),
+      total: fmt(total),
+      deposit: fmt(total * 0.3),
+      balance: fmt(total * 0.7),
+      cookLabel: cook ? "Cook added ✓" : "Add the cook · ₹3,500 / night",
+      cookBg: cook ? "#c8f052" : "transparent",
+      cookFg: cook ? "#0f0e0d" : "rgba(242,239,232,0.8)",
+      toggleCook: () => this.setState(s => ({ cook: !s.cook })),
+      moreNights: () => this.setState(s => ({ nights: Math.min(21, (s.nights || 3) + 1) })),
+      fewerNights: () => this.setState(s => ({ nights: Math.max(MIN_NIGHTS, (s.nights || 3) - 1) })),
+      moreGuests: () => this.setState(s => ({ guests: Math.min(MAX_GUESTS, (s.guests || 4) + 1) })),
+      fewerGuests: () => this.setState(s => ({ guests: Math.max(1, (s.guests || 4) - 1) })),
+      next: () => this.setState(s => ({ step: Math.min(3, (s.step || 0) + 1) })),
+      back: () => this.setState(s => ({ step: Math.max(0, (s.step || 0) - 1) })),
+      restart: () => this.setState({ step: 0 }),
+    };
+  }
+}
+</script>
+</body>
+</html>

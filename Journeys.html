@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Journeys — The Salt Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<style>
+  :root {
+    --cream: #0f0e0d; --paper: #171514; --border: #2a2724;
+    --ink: #f2efe8; --muted: rgba(242,239,232,0.45); --caption: rgba(242,239,232,0.62); --gold: #c8f052; --pink: #ff3d8b; --dark: #0f0e0d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--cream); color: var(--ink); font-family: 'IBM Plex Mono', monospace; -webkit-font-smoothing: antialiased; }
+  a { color: var(--ink); text-decoration: none; }
+  a:hover { color: var(--gold); }
+  ::selection { background: #c8f052; color: #0f0e0d; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .serif { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; letter-spacing: -0.04em; text-transform: uppercase; }
+  .kicker { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--muted); }
+
+  header.nav {
+    position: sticky; top: 0; z-index: 500; display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+    padding: 14px clamp(20px, 4vw, 64px); background: #0f0e0d;
+    border-bottom: 1px solid var(--border);
+  }
+  .brand { display: flex; align-items: center; gap: 8px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: -0.03em; text-transform: uppercase; margin-right: auto; line-height: 1; }
+  .mark { background: var(--gold); color: #0f0e0d; padding: 3px 7px 4px; }
+  .nav-links { display: flex; gap: 22px; flex-wrap: wrap; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; }
+  .nav-links a { color: var(--caption); }
+  .nav-links a.on { color: var(--ink); border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
+  .btn-line { padding: 10px 18px; border: 1px solid var(--ink); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; }
+  .btn-line:hover { background: var(--gold); color: #0f0e0d; border-color: var(--gold); }
+
+  /* road book switcher */
+  .switch { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); border-bottom: 1px solid var(--border); background: var(--paper); }
+  .switch button {
+    all: unset; cursor: pointer; display: block; padding: 20px clamp(18px, 2.4vw, 28px);
+    border-right: 1px solid var(--border); font-family: 'IBM Plex Mono', monospace; min-height: 76px;
+    transition: background 0.2s;
+  }
+  .switch button:hover { background: rgba(200,240,82,0.08); }
+  .switch button[aria-selected="true"] { background: #0f0e0d; box-shadow: inset 0 3px 0 var(--gold); }
+  .switch button[disabled] { cursor: default; opacity: 0.5; }
+  .switch button[disabled]:hover { background: none; }
+  .sw-no { font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .sw-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; letter-spacing: -0.03em; text-transform: uppercase; font-size: 20px; line-height: 1.05; }
+  .sw-meta { font-size: 10px; color: var(--muted); margin-top: 4px; letter-spacing: 0.04em; }
+
+  .book-head { padding: clamp(28px, 4vw, 56px) clamp(20px, 4vw, 64px) clamp(18px, 2.4vw, 28px); }
+  .book-head h1 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; letter-spacing: -0.04em; text-transform: uppercase; font-size: clamp(40px, 8vw, 120px); letter-spacing: -0.05em; line-height: 0.84; margin: 12px 0 12px; }
+  .book-head p.lede { font-size: clamp(13px, 1.35vw, 16px); line-height: 1.7; color: var(--caption); max-width: 60ch; text-wrap: pretty; }
+  .stats { display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-top: clamp(20px, 2.6vw, 32px); }
+  .stat { flex: 1 1 140px; padding: 14px 18px 16px; border-right: 1px solid var(--border); }
+  .stat:last-child { border-right: 0; }
+  .stat b { display: block; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; letter-spacing: -0.03em; text-transform: uppercase; font-size: 24px; margin-top: 4px; }
+
+  /* map + itinerary */
+  .work { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); border-top: 1px solid var(--border); }
+  .map-col { position: relative; border-right: 1px solid var(--border); min-height: 420px; background: var(--paper); }
+  .map-sticky { position: sticky; top: 57px; height: clamp(420px, 78vh, 820px); }
+  #map { position: absolute; inset: 0; background: var(--paper); }
+  .leaflet-tile-pane { filter: grayscale(1) invert(0.92) contrast(0.9) brightness(1.05); }
+  .leaflet-container { font-family: 'IBM Plex Mono', monospace; background: var(--paper); }
+  .map-tint { position: absolute; inset: 0; pointer-events: none; z-index: 400; box-shadow: inset 0 0 0 1px var(--border); }
+  .map-legend {
+    position: absolute; z-index: 450; left: 14px; bottom: 14px; background: rgba(15,14,13,0.94);
+    border: 1px solid var(--border); padding: 10px 12px; display: flex; gap: 14px; flex-wrap: wrap;
+    font-size: 8px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--caption);
+  }
+  .map-legend i { display: inline-block; width: 8px; height: 8px; margin-right: 6px; vertical-align: 0; }
+
+  .pin {
+    display: flex; align-items: center; justify-content: center; width: 26px; height: 26px;
+    background: #f2efe8; border: 1px solid #0f0e0d; color: #0f0e0d;
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500;
+  }
+  .pin.hero { background: #c8f052; border-color: #0f0e0d; color: #0f0e0d; box-shadow: 0 0 0 3px #ff3d8b; }
+  .pin.end { background: #ff3d8b; color: #0f0e0d; border-color: #0f0e0d; }
+  .pin.secret { background: #c8f052; border-color: #0f0e0d; color: #0f0e0d; }
+  .pin.on { outline: 3px solid rgba(200,240,82,0.6); }
+
+  .stops-col { padding: clamp(20px, 3vw, 40px) clamp(20px, 4vw, 48px) clamp(32px, 4vw, 56px); }
+  .stops-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; }
+  .stops-head .rule { flex: 1; height: 1px; background: var(--border); }
+  ol.stops { list-style: none; }
+  ol.stops li { border-bottom: 1px solid var(--border); }
+  ol.stops button {
+    all: unset; cursor: pointer; display: grid; grid-template-columns: 34px 1fr auto; gap: 14px;
+    width: 100%; padding: 16px 0; align-items: baseline; font-family: 'IBM Plex Mono', monospace;
+  }
+  ol.stops button:hover .st-name { color: var(--gold); }
+  ol.stops li.on { background: linear-gradient(90deg, rgba(200,240,82,0.12), transparent 70%); }
+  .st-no { font-size: 10px; letter-spacing: 0.14em; color: var(--muted); }
+  .st-name, .st-note { display: block; }
+  .st-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; letter-spacing: -0.03em; text-transform: uppercase; font-size: clamp(19px, 1.9vw, 25px); line-height: 1.05; }
+  .st-note { font-size: 12px; line-height: 1.7; color: var(--caption); margin-top: 4px; max-width: 52ch; text-wrap: pretty; }
+  .st-mark { font-size: 8px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); white-space: nowrap; padding-top: 4px; }
+
+  .downloads { margin-top: clamp(24px, 3vw, 36px); display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+  .dl { display: block; padding: 15px 18px; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; }
+  .dl.solid { background: var(--gold); color: #0f0e0d; }
+  .dl.solid:hover { background: #ff3d8b; color: #0f0e0d; }
+  .dl.ghost { border: 1px solid var(--border); color: var(--ink); }
+  .dl.ghost:hover { border-color: var(--ink); color: var(--ink); }
+  .fineprint { font-size: 11px; line-height: 1.7; color: var(--muted); margin-top: 14px; max-width: 54ch; }
+
+  .soon-panel { padding: clamp(28px, 4vw, 56px) clamp(20px, 4vw, 64px); border-top: 1px solid var(--border); }
+  .soon-panel .serif.big { font-size: clamp(30px, 4.4vw, 60px); line-height: 0.9; margin: 12px 0 14px; }
+
+  footer { padding: 28px clamp(20px, 4vw, 64px); display: flex; gap: 16px; flex-wrap: wrap; align-items: baseline; border-top: 1px solid var(--border); }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a class="brand" href="Home-Loud.dc.html"><span class="mark">Salt</span>The Salt Guide</a>
+  <nav class="nav-links">
+    <a href="Browse-Loud.dc.html">Stays</a>
+    <a href="#">Destinations</a>
+    <a class="on" href="Journeys.html">Journeys</a>
+    <a href="#">The Guide</a>
+  </nav>
+  <a class="btn-line" href="#concierge">Concierge</a>
+</header>
+
+<div class="switch" id="switch"></div>
+
+<section class="book-head" id="bookHead">
+  <div class="kicker" id="bookNo">Salt Road Book · No. 001</div>
+  <h1 id="bookTitle">The Monsoon Escape</h1>
+  <p class="lede" id="bookDesc"></p>
+  <div class="stats" id="bookStats"></div>
+</section>
+
+<section class="work" id="work">
+  <div class="map-col">
+    <div class="map-sticky">
+      <div id="map"></div>
+      <div class="map-tint"></div>
+      <div class="map-legend">
+        <span><i style="background:#ff3d8b"></i>Start &amp; finish</span>
+        <span><i style="background:#c8f052"></i>Ours alone</span>
+        <span><i style="background:#c8f052;box-shadow:0 0 0 2px #ff3d8b"></i>The reason to go</span>
+        <span><i style="background:#f2efe8"></i>Stop</span>
+      </div>
+    </div>
+  </div>
+  <div class="stops-col">
+    <div class="stops-head">
+      <div class="kicker" style="color:var(--gold)">The route</div>
+      <div class="rule"></div>
+      <div class="kicker" id="stopCount"></div>
+    </div>
+    <ol class="stops" id="stops"></ol>
+
+    <div class="downloads">
+      <a class="dl solid" id="dlPdf" href="SALT_Road_Book_No_001_with_map.pdf" target="_blank" rel="noopener noreferrer">Download the road book (PDF) →</a>
+      <a class="dl ghost" id="dlKml" href="SALT_Road_Book_No_001_Enhanced.kml" target="_blank" rel="noopener noreferrer">Download KML for Google My Maps →</a>
+    </div>
+    <p class="fineprint">Import the KML into Google My Maps and every stop plots with its note. Download the Raigad district map for offline use before you leave — connectivity drops in the interior.</p>
+  </div>
+</section>
+
+<section class="soon-panel hidden" id="soonPanel" style="padding-top:clamp(28px,4vw,56px)">
+  <div class="kicker" id="soonNo"></div>
+  <div class="serif big" id="soonTitle"></div>
+  <p class="lede" id="soonDesc" style="font-size:14px;line-height:1.75;color:var(--caption);max-width:52ch"></p>
+  <div class="stats" id="soonStats"></div>
+  <p class="fineprint">We drive every route twice before we publish it — once to find it, once to time it. This one is on the second pass.</p>
+</section>
+
+<section id="concierge" style="padding:clamp(40px,6vw,96px) clamp(20px,4vw,64px);background:#171514;color:#f2efe8;border-top:1px solid var(--border)">
+  <div style="max-width:720px">
+    <div class="kicker" style="color:var(--gold);margin-bottom:16px">Concierge</div>
+    <div class="serif" style="font-size:clamp(30px,5vw,66px);line-height:0.88;margin-bottom:18px">Drive it with the car, the driver and the table booked.</div>
+    <p style="font-size:15px;line-height:1.8;color:rgba(242,239,232,0.62);max-width:48ch;text-wrap:pretty">We'll put a car and a driver on the route, hold the rooms at either end and book the one lunch that matters. Tell us the week.</p>
+    <a class="dl solid" style="display:inline-block;margin-top:26px;background:#c8f052;color:#0f0e0d" href="#">Start a conversation →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="serif" style="font-size:15px;letter-spacing:0.2em;text-transform:uppercase;margin-right:auto">The Salt Guide</div>
+  <div style="font-size:10px;letter-spacing:0.1em;color:var(--muted)">© 2026 · Stays, tables and roads</div>
+</footer>
+
+<script>
+const BOOKS = [
+  {
+    id: "rb001", number: "No. 001", title: "The Monsoon Escape",
+    subtitle: "Bombay to Panchgani · Village Route", tag: "India · Maharashtra",
+    distance: "245 km", duration: "8–9 hours", season: "July–September", plotted: true,
+    desc: "This is not the fast route. It is the right route. The expressway takes three hours and shows you nothing. This road takes all day and shows you everything — the Konkan coast, Raigad's villages, the rice fields, the Sahyadri forest, and the longest ghat in Maharashtra.",
+    stops: [
+      { name: "South Bombay", ll: [18.9220, 72.8347], mark: "start", note: "Leave by six. Everything after this is easier if the city is still asleep when you cross the creek." },
+      { name: "Pen", ll: [18.7370, 73.0960], note: "Where the Ganpati idols are made. Stop for tea and look into any workshop with an open door." },
+      { name: "Roha", ll: [18.4400, 73.1180], note: "The road narrows here and the rice begins. Fill the tank — the next reliable pump is two hours on." },
+      { name: "Tala Village", ll: [18.3450, 73.1900], mark: "secret", note: "A fort above, a village below, and nobody on the road. Twenty minutes off the route and the best twenty minutes of the morning." },
+      { name: "Nizampur", ll: [18.2200, 73.1900], mark: "secret", note: "One street, one temple, one shop selling exactly what you need. Ask for the kokum sherbet." },
+      { name: "Kolad", ll: [18.4900, 73.2400], note: "The Kundalika river. Rafting in season, and a bridge worth stopping on for five minutes." },
+      { name: "Mangaon", ll: [18.2350, 73.2860], note: "Lunch. Unremarkable town, remarkable thali — the one on the highway side with the blue chairs." },
+      { name: "Poladpur", ll: [17.9900, 73.4700], note: "The last flat ground. From here the road only goes up. Coffee before you commit." },
+      { name: "Ambenali Ghat", ll: [17.9500, 73.6300], mark: "hero", note: "Thirty kilometres of switchbacks through unbroken forest, the longest ghat in Maharashtra and, in July, the reason for the whole drive. Drive it slowly. Stop often." },
+      { name: "Panchgani", ll: [17.9250, 73.8000], mark: "finish", note: "Arrive before dark. The table plateau, the strawberry farms, and a room with the valley in the window." }
+    ]
+  },
+  {
+    id: "rb002", number: "No. 002", title: "The Ghat Road",
+    subtitle: "Bombay to Goa · Coastal Route", tag: "India · Konkan",
+    distance: "~600 km", duration: "2 days", season: "October–March", plotted: false,
+    desc: "The coast road south, taken in two unhurried days rather than one grim one. Ferries, fishing villages, a night halt where the road meets the sea."
+  },
+  {
+    id: "rb003", number: "No. 003", title: "The Plantation Drive",
+    subtitle: "Coorg · Coffee and Cardamom", tag: "India · Karnataka",
+    distance: "~280 km", duration: "1 day", season: "Year round", plotted: false,
+    desc: "A loop through the coffee country — estate roads, a river crossing, and three places to stop that are not on any list."
+  }
+];
+
+const MARKS = { hero: "The reason to go", secret: "Ours alone", start: "Start", finish: "Finish" };
+
+let map, routeLayer, markers = [], current = null, activeStop = -1;
+
+function el(id) { return document.getElementById(id); }
+
+function initMap() {
+  map = L.map("map", { scrollWheelZoom: false, zoomControl: true, attributionControl: true });
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "© OpenStreetMap contributors", maxZoom: 17
+  }).addTo(map);
+}
+
+function drawRoute(book) {
+  if (routeLayer) { routeLayer.remove(); routeLayer = null; }
+  markers.forEach(m => m.remove());
+  markers = [];
+  const pts = book.stops.map(s => s.ll);
+
+  routeLayer = L.layerGroup([
+    L.polyline(pts, { color: "#0f0e0d", weight: 8, opacity: 0.85 }),
+    L.polyline(pts, { color: "#c8f052", weight: 3, opacity: 1 })
+  ]).addTo(map);
+
+  book.stops.forEach((s, i) => {
+    const cls = s.mark === "hero" ? "pin hero" : s.mark === "secret" ? "pin secret"
+      : (s.mark === "start" || s.mark === "finish") ? "pin end" : "pin";
+    const m = L.marker(s.ll, {
+      icon: L.divIcon({ className: "", html: '<div class="' + cls + '" data-pin="' + i + '">' + (i + 1) + "</div>", iconSize: [26, 26], iconAnchor: [13, 13] })
+    }).addTo(map);
+    m.bindTooltip(s.name, { direction: "right", offset: [14, 0], className: "salt-tip" });
+    m.on("click", () => selectStop(i, true));
+    markers.push(m);
+  });
+
+  map.fitBounds(L.latLngBounds(pts).pad(0.12));
+}
+
+function selectStop(i, fromMap) {
+  activeStop = i;
+  document.querySelectorAll("ol.stops li").forEach((li, n) => li.classList.toggle("on", n === i));
+  document.querySelectorAll(".pin").forEach(p => p.classList.toggle("on", +p.dataset.pin === i));
+  const s = current.stops[i];
+  if (!fromMap) map.flyTo(s.ll, 11, { duration: 0.8 });
+  markers[i].openTooltip();
+}
+
+function renderStats(node, book) {
+  node.innerHTML = [["Distance", book.distance], ["On the road", book.duration], ["Season", book.season], ["Where", book.tag]]
+    .map(([k, v]) => '<div class="stat"><span class="kicker">' + k + "</span><b>" + v + "</b></div>").join("");
+}
+
+function show(book) {
+  current = book;
+  el("bookNo").textContent = "Salt Road Book · " + book.number;
+  el("bookTitle").textContent = book.title;
+  el("bookDesc").textContent = book.desc;
+  renderStats(el("bookStats"), book);
+
+  document.querySelectorAll("#switch button").forEach(b =>
+    b.setAttribute("aria-selected", String(b.dataset.id === book.id)));
+
+  if (book.plotted) {
+    el("work").classList.remove("hidden");
+    el("bookHead").classList.remove("hidden");
+    el("soonPanel").classList.add("hidden");
+    el("stopCount").textContent = book.stops.length + " stops";
+    el("stops").innerHTML = book.stops.map((s, i) =>
+      '<li><button data-stop="' + i + '">' +
+        '<span class="st-no">' + String(i + 1).padStart(2, "0") + "</span>" +
+        '<span><span class="st-name">' + s.name + '</span><span class="st-note">' + s.note + "</span></span>" +
+        '<span class="st-mark">' + (s.mark ? MARKS[s.mark] : "") + "</span>" +
+      "</button></li>").join("");
+    el("stops").querySelectorAll("button").forEach(b =>
+      b.addEventListener("click", () => selectStop(+b.dataset.stop, false)));
+    setTimeout(() => { map.invalidateSize(); drawRoute(book); }, 60);
+  } else {
+    el("work").classList.add("hidden");
+    el("bookHead").classList.add("hidden");
+    el("soonPanel").classList.remove("hidden");
+    el("soonNo").textContent = "Salt Road Book · " + book.number + " · In progress";
+    el("soonTitle").textContent = book.title;
+    el("soonDesc").textContent = book.desc;
+    renderStats(el("soonStats"), book);
+  }
+}
+
+el("switch").innerHTML = BOOKS.map(b =>
+  '<button data-id="' + b.id + '" aria-selected="false"' + (b.plotted ? "" : "") + ">" +
+    '<div class="sw-no">' + b.number + (b.plotted ? "" : " · In progress") + "</div>" +
+    '<div class="sw-title">' + b.title + "</div>" +
+    '<div class="sw-meta">' + b.subtitle + " · " + b.distance + "</div>" +
+  "</button>").join("");
+
+document.querySelectorAll("#switch button").forEach(b =>
+  b.addEventListener("click", () => show(BOOKS.find(x => x.id === b.dataset.id))));
+
+initMap();
+show(BOOKS[0]);
+</script>
+
+<style>
+  .salt-tip {
+    background: #c8f052; color: #0f0e0d; border: 0; border-radius: 0; box-shadow: none;
+    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 9px;
+  }
+  .salt-tip::before { border-right-color: #c8f052 !important; }
+  .leaflet-control-zoom a { border-radius: 0 !important; background: #171514 !important; color: #f2efe8 !important; border-color: #2a2724 !important; }
+  .leaflet-control-attribution { background: rgba(15,14,13,0.9) !important; font-size: 9px !important; }
+</style>
+
+</body>
+</html>
